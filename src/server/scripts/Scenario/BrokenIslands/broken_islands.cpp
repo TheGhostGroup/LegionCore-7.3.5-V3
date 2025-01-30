@@ -15,36 +15,10 @@ The Broken Islands Scenario
 #include "CreatureGroups.h"
 // #include "PrecompiledHeaders/ScriptPCH.h"
 
-#define GOSSIP_ACCEPT_DUEL      "Let''s duel"
-#define EVENT_SPECIAL 20
-
-enum eDuelEnums
-{
-    SAY_DUEL_A = -1609080,
-    SAY_DUEL_B = -1609081,
-    SAY_DUEL_C = -1609082,
-    SAY_DUEL_D = -1609083,
-    SAY_DUEL_E = -1609084,
-    SAY_DUEL_F = -1609085,
-    SAY_DUEL_G = -1609086,
-    SAY_DUEL_H = -1609087,
-    SAY_DUEL_I = -1609088,
-
-    SPELL_DUEL = 52996,
-    //SPELL_DUEL_TRIGGERED        = 52990,
-    SPELL_DUEL_VICTORY = 52994,
-    SPELL_DUEL_FLAG = 52991,
-
-    QUEST_42782 = 42782,
-    QUEST_44281 = 44281,
-    FACTION_HOSTILE = 2068
-};
-
 int32 _m_auiRandomSay[] =
 {
     SAY_DUEL_A, SAY_DUEL_B, SAY_DUEL_C, SAY_DUEL_D, SAY_DUEL_E, SAY_DUEL_F, SAY_DUEL_G, SAY_DUEL_H, SAY_DUEL_I
 };
-
 
 class npc_q42782 : public CreatureScript
 {
@@ -494,11 +468,12 @@ public:
 
     bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action) override
     {
+        TC_LOG_ERROR("scripts", "Gossip select for npc_q42740");
         player->PlayerTalkClass->ClearMenus();
 
         //214608
         player->KilledMonsterCredit(creature->GetEntry());
-        player->CastSpell(player, 216356, false); //scene
+        player->CastSpell(player, SPELL_BROKEN_SHORE_CLIENT_SCENE, false); //scene
 
         return true;
     };
@@ -511,11 +486,12 @@ public:
 
     bool OnGossipSelect(Player* player, Creature* creature, uint32 /*sender*/, uint32 action) override
     {
+        TC_LOG_ERROR("scripts", "Gossip select for npc_q40518");
         player->PlayerTalkClass->ClearMenus();
 
         //214608
         player->KilledMonsterCredit(creature->GetEntry());
-        player->CastSpell(player, 225147, false); //scene
+        player->CastSpell(player, SPELL_LEAVE_FOR_BROKENSHORE_CLIENT_SCENE, false); //scene
 
         return true;
     };
@@ -529,15 +505,18 @@ public:
 
     bool OnTrigger(Player* player, SpellScene const* trigger, std::string type) override
     {
+        TC_LOG_ERROR("scripts", "On trigger sceneTrigger_enterBrockenShores");
+
         std::set<uint32> Slot;
         Slot.insert(908); //The Battle for Broken Shore
         sLFGMgr->JoinLfg(player, player->GetSpecializationRoleMaskForGroup(), Slot);
+        
         return true;
     }
 };
 
 
-//! 227058 WARN! Spell not exits.
+//! SPELL_LEAVE_FOR_BROKENSHORE_QUEUE => 227058 WARN! Spell not exits.
 class spell_q42740 : public SpellScriptLoader
 {
 public:
@@ -594,6 +573,7 @@ public:
 
         void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
         {
+            TC_LOG_ERROR("scripts", "OnApply spell_bi_enter_stage1");
             if (Unit* caster = GetCaster())
             {
                 Player *player = caster->ToPlayer();
@@ -641,7 +621,8 @@ public:
                         }
 
                         plr->SendMovieStart(486);
-                        plr->CastSpell(plr, plr->GetTeam() == ALLIANCE ? 199358 : 225152, false);
+                        plr->CastSpell(plr, plr->GetTeam() == ALLIANCE ? Spells::SPELL_STAGE_1_PORT_ALLIANCE : Spells::SPELL_STAGE_1_PORT_HORDE, false);
+                        plr->CastSpell(plr, SPELL_SWIMMER_TELEPORT, false);
                     }
             }
         }
@@ -666,8 +647,16 @@ public:
 
     bool OnTrigger(Player* player, SpellScene const* trigger, std::string type) override
     {
+        TC_LOG_ERROR("scripts", "On trigger sceneTrigger_part1");
+        sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "OnTrigger sceneTrigger_part1", player);
+        sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "OnTrigger sceneTrigger_part1");
+        player->Say("OnTrigger sceneTrigger_part1", Language::LANG_COMMON, false);
+
         if (type == "farsight")
         {
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "Farsight", player);
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "Farsight");
+            player->Say("Farsight", Language::LANG_COMMON, false);
             if (auto data = player->GetInstanceScript())
             {
                 Map* m = player->FindMap();
@@ -711,6 +700,9 @@ public:
         }
         if (type == "phaseupdate")
         {
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "phaseupdate", player);
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "phaseupdate");
+            player->Say("phaseupdate", Language::LANG_COMMON, false);
             Map* m = player->FindMap();
             if (!m)
                 return true;
@@ -727,6 +719,9 @@ public:
         }
         if (type == "port")
         {
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "port", player);
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "port");
+            player->Say("port", Language::LANG_COMMON, false);
             InstanceScript *script = player->GetInstanceScript();
 
             if (!script)
@@ -761,10 +756,13 @@ public:
 
             for (Map::PlayerList::const_iterator i = PlList.begin(); i != PlList.end(); ++i)
                 if (Player* plr = i->getSource())
-                    plr->CastSpell(plr, plr->GetTeam() == ALLIANCE ? 199358 : 225152, false);
+                    plr->CastSpell(plr, plr->GetTeam() == ALLIANCE ? Spells::SPELL_STAGE_1_PORT_ALLIANCE : Spells::SPELL_STAGE_1_PORT_HORDE, false);
         }
         if (type == "complete")
         {
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "complete", player);
+            sWorld->SendServerMessage(ServerMessageType::SERVER_MSG_STRING, "complete");
+            player->Say("complete", Language::LANG_COMMON, false);
             //scenation ID 1189 step 0
             player->UpdateAchievementCriteria(CRITERIA_TYPE_SCRIPT_EVENT_2, 54140);
 
@@ -783,7 +781,7 @@ public:
                     player->m_movementInfo.transport.Reset();
                 }
 
-                player->CastSpell(player, player->GetTeam() == ALLIANCE ? 199358 : 225152, false);
+                player->CastSpell(player, player->GetTeam() == ALLIANCE ? SPELL_STAGE_1_PORT_ALLIANCE : SPELL_STAGE_1_PORT_HORDE, false);
             }*/
         }
         return true;
