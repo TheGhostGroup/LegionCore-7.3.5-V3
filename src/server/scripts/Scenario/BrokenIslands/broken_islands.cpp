@@ -510,16 +510,15 @@ public:
         std::set<uint32> Slot;
         Slot.insert(908); //The Battle for Broken Shore
         sLFGMgr->JoinLfg(player, player->GetSpecializationRoleMaskForGroup(), Slot);
-
+        
         player->AddDelayedEvent(1000, [this, player]() -> void
         {
             if (player->GetTeamId() == TEAM_HORDE)
-                player->TeleportTo(WorldLocation(1460, Position(-1037.229248f, 1683.252808f, 16.557701f, 1.336560f)), TeleportToOptions::TELE_TO_NOT_LEAVE_TRANSPORT);
+                player->TeleportTo(WorldLocation(1460, Position(-1057.229248f, 1918.252808f, 16.557701f, 1.336560f)), TeleportToOptions::TELE_TO_NOT_LEAVE_TRANSPORT);
             else
                 player->TeleportTo(WorldLocation(1460, Position(-1063.734741, 1918.939697f, 10.205732f, 6.272131f)), TeleportToOptions::TELE_TO_NOT_LEAVE_TRANSPORT);
         });
 
-        
         return true;
     }
 };
