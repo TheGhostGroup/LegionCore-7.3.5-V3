@@ -1,4 +1,5 @@
-# This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
+#
+# This file is part of the AzerothCore Project. See AUTHORS file for Copyright information
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -7,25 +8,13 @@
 # This program is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
 
-set(BOOST_SEARCH_HINTS)
 if(WIN32)
-  if(DEFINED ENV{BOOST_ROOT})
-    set(BOOST_ROOT $ENV{BOOST_ROOT})
-  endif()
-  if(DEFINED BOOST_ROOT AND MSVC)
-    # insert a dot (.) character before last digit of MSVC_TOOLSET_VERSION
-    # turn 143 into 14.3
-    string(LENGTH "${MSVC_TOOLSET_VERSION}" _BOOST_MSVC_TOOLSET_VERSION_LENGTH)
-    math(EXPR _BOOST_MSVC_TOOLSET_VERSION_LENGTH "${_BOOST_MSVC_TOOLSET_VERSION_LENGTH} - 1" OUTPUT_FORMAT DECIMAL)
-    string(SUBSTRING "${MSVC_TOOLSET_VERSION}" 0 ${_BOOST_MSVC_TOOLSET_VERSION_LENGTH} _BOOST_MSVC_TOOLSET_VERSION_MAJOR)
-    string(SUBSTRING "${MSVC_TOOLSET_VERSION}" ${_BOOST_MSVC_TOOLSET_VERSION_LENGTH} -1 _BOOST_MSVC_TOOLSET_VERSION_MINOR)
-
-    set(BOOST_SEARCH_HINTS "${BOOST_ROOT}/lib${PLATFORM}-msvc-${_BOOST_MSVC_TOOLSET_VERSION_MAJOR}.${_BOOST_MSVC_TOOLSET_VERSION_MINOR}/cmake")
-
-    unset(_BOOST_MSVC_TOOLSET_VERSION_LENGTH)
-    unset(_BOOST_MSVC_TOOLSET_VERSION_MAJOR)
-    unset(_BOOST_MSVC_TOOLSET_VERSION_MINOR)
+  if(DEFINED ENV{Boost_ROOT})
+    set(Boost_ROOT $ENV{Boost_ROOT})
+  else()
+	set(Boost_ROOT "C:/boost_1_85_0")
   endif()
 
   set(Boost_USE_STATIC_LIBS        ON)
@@ -33,46 +22,23 @@ if(WIN32)
   set(Boost_USE_STATIC_RUNTIME     OFF)
 endif()
 
+set(Boost_NO_WARN_NEW_VERSIONS ON)
+
+include (CheckCXXSourceCompiles)
+
 if (WIN32)
   # On windows the requirements are higher according to the wiki.
-  set(BOOST_REQUIRED_VERSION 1.78)
+  set(BOOST_REQUIRED_VERSION 1.85)
 else()
   set(BOOST_REQUIRED_VERSION 1.74)
 endif()
 
-find_package(Boost ${BOOST_REQUIRED_VERSION}
-  REQUIRED
-  COMPONENTS
-    system
-    filesystem
-    thread
-    program_options
-    iostreams
-    regex
-    locale
-  CONFIG
-  HINTS
-    ${BOOST_SEARCH_HINTS})
+find_package(Boost ${BOOST_REQUIRED_VERSION} REQUIRED system filesystem program_options iostreams regex thread locale)
 
-# Find if Boost was compiled in C++03 mode because it requires -DBOOST_NO_CXX11_SCOPED_ENUMS
-
-include (CheckCXXSourceCompiles)
-
-set(CMAKE_REQUIRED_INCLUDES ${Boost_INCLUDE_DIR})
-set(CMAKE_REQUIRED_LIBRARIES ${Boost_SYSTEM_LIBRARY} ${Boost_FILESYSTEM_LIBRARY} ${Boost_IOSTREAMS_LIBRARY})
-set(CMAKE_REQUIRED_FLAGS "-std=c++11")
-unset(boost_filesystem_copy_links_without_NO_SCOPED_ENUM CACHE)
-check_cxx_source_compiles("
-  #include <boost/filesystem/path.hpp>
-  #include <boost/filesystem/operations.hpp>
-  int main() { boost::filesystem::copy_file(boost::filesystem::path(), boost::filesystem::path()); }"
-boost_filesystem_copy_links_without_NO_SCOPED_ENUM)
-unset(CMAKE_REQUIRED_INCLUDES CACHE)
-unset(CMAKE_REQUIRED_LIBRARIES CACHE)
-unset(CMAKE_REQUIRED_FLAGS CACHE)
-
-if (NOT boost_filesystem_copy_links_without_NO_SCOPED_ENUM)
-  set(OPTIONAL_BOOST_NO_SCOPED_ENUMS -DBOOST_NO_CXX11_SCOPED_ENUMS)
+if(NOT Boost_FOUND)
+  if(NOT DEFINED ENV{Boost_ROOT} AND NOT DEFINED Boost_DIR AND NOT DEFINED BOOST_ROOT AND NOT DEFINED BOOSTROOT)
+    message(FATAL_ERROR "No Boost_ROOT environment variable could be found! Please make sure it is set and the points to your Boost installation.")
+  endif()
 endif()
 
 add_library(boost INTERFACE)
@@ -90,4 +56,8 @@ target_compile_definitions(boost
     -DBOOST_DATE_TIME_NO_LIB
     -DBOOST_REGEX_NO_LIB
     -DBOOST_CHRONO_NO_LIB
-    ${OPTIONAL_BOOST_NO_SCOPED_ENUMS})
+    -DBOOST_SERIALIZATION_NO_LIB
+    -DBOOST_CONFIG_SUPPRESS_OUTDATED_MESSAGE
+    -DBOOST_ASIO_NO_DEPRECATED
+    -DBOOST_SYSTEM_USE_UTF8
+    -DBOOST_BIND_NO_PLACEHOLDERS)
