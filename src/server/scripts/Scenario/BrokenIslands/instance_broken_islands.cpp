@@ -96,9 +96,26 @@ public:
             player->ApplyModFlag(PLAYER_FIELD_PLAYER_FLAGS, PLAYER_FLAGS_PVP_TIMER, false);
             player->UpdatePvP(true, true);
 
+
+            if (auto battleShipGameObject = GetGameObjectByEntry(player->GetTeam() == ALLIANCE ? GO_ALLIANCE_SHIP : GO_HORDE_SHIP))
+            {
+                TC_LOG_ERROR("scripts", "battleShipGameObject is valid");
+
+                ObjectGuid battleshipGuid = battleShipGameObject ? battleShipGameObject->GetGUID() : ObjectGuid::Empty;
+                instance->LoadGrid(521.7239f, 1862.63f);
+                instance->LoadGrid(461.8785f, 2032.679f);
+                instance->LoadGrid(472.92f, 2037.86f);
+                instance->LoadGrid(591.77f, 1898.48f);
+
+                if (Transport* transport = player->GetMap()->GetTransport(battleshipGuid))
+                {
+                    TC_LOG_ERROR("scripts", "battleShipGameObject is transport");
+                    transport->AddPassenger(player);
+                }
+            }
+
             auto transportGameObject = GetGameObjectByEntry(player->GetTeam() == ALLIANCE ? TRANSPORT_ALLIANCE : TRANSPORT_HORDE);
             ObjectGuid transportGuid = transportGameObject ? transportGameObject->GetGUID() : ObjectGuid::Empty;
-
             if (Transport* transport = player->GetMap()->GetTransport(transportGuid))
             {
                 instance->LoadGrid(521.7239f, 1862.63f);

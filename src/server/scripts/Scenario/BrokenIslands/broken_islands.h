@@ -19,8 +19,52 @@
 #ifndef DEF_A_BROKEN_ISLANDS
 #define DEF_A_BROKEN_ISLANDS
 
+#define GOSSIP_ACCEPT_DUEL      "Let''s duel"
+#define EVENT_SPECIAL           20
+
 enum Spells
 {
+	SPELL_STAGE_1_PORT_ALLIANCE 		= 199358,
+	SPELL_STAGE_1_PORT_HORDE    		= 225152,
+	SPELL_LEAVE_BROKEN_SHORE_QUEUE      = 227058,
+	SPELL_BROKEN_SHORE_CLIENT_SCENE     = 216356, // 1335
+	SPELL_SWIMMER_TELEPORT              = 218611,
+	SPELL_INTRO_CONVERSATION_1          = 180708, // 923
+	SPELL_INTRO_CONVERSATION_2          = 199353, // 924
+	SPELL_CANNONBALLS_SCENE             = 183341, // 1351
+	SPELL_INTRO_SCENE                   = 199357, // 486
+	
+	SPELL_TELEPORT_TO_STORMWIND         = 208514,
+
+    SPELL_BLACK_FADE                    = 240188
+};
+
+enum eDuelEnums
+{
+    SAY_DUEL_A = -1609080,
+    SAY_DUEL_B = -1609081,
+    SAY_DUEL_C = -1609082,
+    SAY_DUEL_D = -1609083,
+    SAY_DUEL_E = -1609084,
+    SAY_DUEL_F = -1609085,
+    SAY_DUEL_G = -1609086,
+    SAY_DUEL_H = -1609087,
+    SAY_DUEL_I = -1609088,
+
+    SPELL_DUEL = 52996,
+    //SPELL_DUEL_TRIGGERED        = 52990,
+    SPELL_DUEL_VICTORY = 52994,
+    SPELL_DUEL_FLAG = 52991,
+
+    QUEST_42782 = 42782,
+    QUEST_44281 = 44281,
+    FACTION_HOSTILE = 2068
+};
+
+enum BrokenShoreIntro
+{
+    SPELL_LEAVE_FOR_BROKENSHORE_CLIENT_SCENE = 225147,
+    SPELL_LEAVE_FOR_BROKENSHORE_QUEUE = 227058,
 };
 
 enum Data
@@ -65,6 +109,33 @@ enum eGameObects
     TRANSPORT_HORDE = 254124,
     //Spires of Woe destroyed
     GO_SPIRES_OF_WOE = 240194,
+};
+
+enum etc
+{
+	_DT_SCENARIA_TEAM                   = 0,
+    _CIMEMATIC_ID                       = 999,
+
+    _EVENT_TeleportAlliance             = 1,
+    _EVENT_TeleportHorde                = 2,
+
+
+    // Stage 2     
+    TowerDestroyAlliance                = 44077,   // Criteria objective ==> [Criteria.db2].Asset
+    TowerDestroyHorde                   = 54114,
+
+    // Stage 3
+    DefeatCommanderAlliance             = 45131,
+    DefeatCommanderHorde                = 54109,
+
+    // Stage 5
+    DestroyPortalAlliance               = 45288,
+    DestroyPortalHorde                  = 54141,
+
+    // Stage 6
+    BlackCityRazed_1p                   = 44384,   // stage progress Increase by 1%
+    BlackCityRazed_5p                   = 53063,
+    BlackCityRazed_10p                  = 53064,
 };
 
 #endif
