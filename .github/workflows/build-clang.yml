@@ -2,9 +2,6 @@ name: Clang
 
 on:
   push:
-    branches:
-      - main
-      - phasing
   pull_request:
 
 jobs:
