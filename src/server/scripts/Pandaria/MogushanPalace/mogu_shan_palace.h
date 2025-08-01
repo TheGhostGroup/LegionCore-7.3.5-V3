@@ -152,4 +152,5 @@ const Position otherPos[4] =
     {   -4612.78f, -2571.62f, 26.10f, 0.04f    }
 };
 
-#endif
+
+#endif // MOGUSHAN_PALACE_H_

@@ -97,4 +97,4 @@ enum SharedSpells
     SPELL_ACHIEVEMENT_CHECK     = 124979
 };
 
-#endif
+#endif // SHADOPAN_MONASTERY_H_

@@ -1,8 +1,8 @@
 
 //Throne of Thunder
 
-#ifndef THRONEOFTHUNDER
-#define THRONEOFTHUNDER
+#ifndef THRONE_OF_THUNDER_H_
+#define THRONE_OF_THUNDER_H_
 
 #define DataHeader "TOT"
 
@@ -313,4 +313,4 @@ enum eGameObjects
     GO_RA_DEN_ENT_DOOR      = 218555,
 };
 
-#endif THRONEOFTHUNDER
+#endif // THRONE_OF_THUNDER_H_

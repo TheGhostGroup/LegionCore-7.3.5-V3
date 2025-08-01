@@ -59,4 +59,4 @@ enum eMisc
     SPELL_HOPLING_SUMM_3        = 114356
 };
 
-#endif
+#endif // STORMSTOUT_BREWERY_H_

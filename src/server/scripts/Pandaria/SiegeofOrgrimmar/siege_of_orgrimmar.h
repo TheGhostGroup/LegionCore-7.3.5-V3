@@ -1,8 +1,8 @@
 
 //Siege of Orgrimmar
 
-#ifndef SIEGEOFORGRIMMAR
-#define SIEGEOFORGRIMMAR
+#ifndef SIEGE_OF_ORGRIMMAR_H_
+#define SIEGE_OF_ORGRIMMAR_H_
 
 #define DataHeader "SOO"
 
@@ -712,4 +712,4 @@ static uint8 vehSlotForMeasures(uint32 entry)
     }
     return 0;
 }
-#endif SIEGEOFORGRIMMAR
+#endif // SIEGE_OF_ORGRIMMAR_H_

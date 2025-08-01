@@ -1,6 +1,6 @@
-#ifndef DEF_TEMPLEOFJADESERPENT_H
-#define DEF_TEMPLEOFJADESERPENT_H
+#ifndef TEMPLE_OF_JADE_SERPENT_H_
+#define TEMPLE_OF_JADE_SERPENT_H_
 
 #define DataHeader "TJS"
 
-#endif
+#endif // TEMPLE_OF_JADE_SERPENT_H_

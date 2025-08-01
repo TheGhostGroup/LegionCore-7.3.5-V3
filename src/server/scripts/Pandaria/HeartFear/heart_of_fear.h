@@ -1,8 +1,8 @@
 
 //Heart of Fear
 
-#ifndef HEARTOFFEAR
-#define HEARTOFFEAR
+#ifndef HEART_OF_FEAR_H_
+#define HEART_OF_FEAR_H_
 
 #define DataHeader "HOF"
 
@@ -102,4 +102,4 @@ enum eGameObjects
     GO_EMPRESS_COCOON = 213277,
 };
 
-#endif HEARTOFFEAR
+#endif // HEART_OF_FEAR_H_

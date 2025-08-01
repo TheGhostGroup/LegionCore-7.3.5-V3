@@ -1,8 +1,8 @@
 /*==============
 ==============*/
 
-#ifndef STORMSTOUT_BREWERY_H_
-#define STORMSTOUT_BREWERY_H_
+#ifndef GATE_OF_THE_SETTING_SUN_H_
+#define GATE_OF_THE_SETTING_SUN_H_
 
 #define DataHeader "GSS"
 
@@ -96,4 +96,4 @@ enum eSettingSun
     CINEMATIC_SETTING_SUN       = 265
 };
 
-#endif
+#endif // GATE_OF_THE_SETTING_SUN_H_
