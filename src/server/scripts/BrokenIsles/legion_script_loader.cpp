@@ -174,7 +174,7 @@ void AddSC_DarkMoonConcertBlightBoar();
 void AddSC_TheGreatGromereganRun();
 void AddSC_MoonkinFestival();
 
-void AddLegionScripts()
+void AddBrokenIslesScripts()
 {
     AddSC_azsuna();
     AddSC_broken_shore();
