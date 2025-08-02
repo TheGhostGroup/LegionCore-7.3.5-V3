@@ -1838,8 +1838,8 @@ class TC_GAME_API Unit : public WorldObject
 
         void ApplyStatPercentBuffMod(Stats stat, float val, bool apply)
         {
-            ApplyPercentModFloatValue(UNIT_FIELD_STAT_POS_BUFF + stat, val, apply);
-            ApplyPercentModFloatValue(UNIT_FIELD_STAT_NEG_BUFF + stat, val, apply);
+            ApplyPercentModFloatValue(UNIT_FIELD_STAT_POS_BUFF + static_cast<int>(stat), val, apply);
+            ApplyPercentModFloatValue(UNIT_FIELD_STAT_NEG_BUFF + static_cast<int>(stat), val, apply);
         }
 
         float GetRatingMultiplier(CombatRating cr) const;
