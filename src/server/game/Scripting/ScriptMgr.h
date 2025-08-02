@@ -696,7 +696,7 @@ class TC_GAME_API PlayerScript : public ScriptObject
 
         // Called when a player logs in.
         virtual void OnLogin(Player* /*player*/) { }
-        virtual void OnLogin(Player* /*player*/, bool firstLogin) { }
+        virtual void OnLogin(Player* /*player*/, bool /*firstLogin*/) { }
 
         // Called when a player logs out.
         virtual void OnLogout(Player* /*player*/) { }
@@ -728,18 +728,18 @@ class TC_GAME_API PlayerScript : public ScriptObject
         
         virtual void OnSendMail(Player* /*player*/, std::string& subject, std::string& body, ObjectGuid receiver) {}
         
-        virtual void OnQuestReward(Player* player, Quest const* quest) {}
+        virtual void OnQuestReward(Player* /*player*/, Quest const* /*quest*/) {}
 
-        virtual void OnEnterCombat(Player* player, Unit* target) {}
+        virtual void OnEnterCombat(Player* /*player*/, Unit* /*target*/) {}
 		
         //After looting item
-        virtual void OnLootItem(Player* player, Item* item, uint32 count) { }
+        virtual void OnLootItem(Player* /*player*/, Item* /*item*/, uint32 /*count*/) { }
 
         //After creating item (eg profession item creation)
-        virtual void OnCreateItem(Player* player, Item* item, uint32 count) { }
+        virtual void OnCreateItem(Player* /*player*/, Item* /*item*/, uint32 /*count*/) { }
 
         //After receiving item as a quest reward
-        virtual void OnQuestRewardItem(Player* player, Item* item, uint32 count) { }
+        virtual void OnQuestRewardItem(Player* /*player*/, Item* /*item*/, uint32 /*count*/) { }
 };
 
 class TC_GAME_API SessionScript : public ScriptObject
