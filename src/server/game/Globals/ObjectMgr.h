@@ -190,7 +190,7 @@ typedef std::unordered_map<uint16 /*ZoneID*/, SeamlessTeleportData> SeamlessTele
 struct PlayerChoiceResponseRewardItem
 {
     PlayerChoiceResponseRewardItem() : Id(0), Quantity(0) { }
-    PlayerChoiceResponseRewardItem(uint32 id, std::vector<uint32> bonusListIDs, int32 quantity) : Id(id), BonusListIDs(std::move(bonusListIDs)), Quantity(quantity) { }
+    PlayerChoiceResponseRewardItem(uint32 id, std::vector<uint32> bonusListIDs, int32 quantity) : BonusListIDs(std::move(bonusListIDs)), Id(id), Quantity(quantity) { }
 
     std::vector<uint32> BonusListIDs;
     uint32 Id;
