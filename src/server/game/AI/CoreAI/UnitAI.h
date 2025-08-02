@@ -122,14 +122,14 @@ class TC_GAME_API UnitAI
         virtual void OnCharmed(bool apply) = 0;
 
         // Called at Unit::SelectVictim at ThreatContainer::selectNextVictim
-        virtual bool AllowSelectNextVictim(Unit* target) { return true; }
+        virtual bool AllowSelectNextVictim(Unit* /*target*/) { return true; }
 
         // Pass parameters between AI
         virtual void DoAction(int32 const /*param*/) {}
         virtual void DoAction(int32 const /*param*/, Creature* /*creature*/) {}
         virtual uint32 GetData(uint32 /*id = 0*/) const{ return 0; }
         virtual bool GetObjectData(ObjectGuid const& /*guid*/) { return false; }
-        virtual bool GetObjectData(ObjectGuid const& /*guid*/, uint32 type) { return false; }
+        virtual bool GetObjectData(ObjectGuid const& /*guid*/, uint32 /*type*/) { return false; }
         virtual uint32 GetModifyedData(uint32 /*id = 0*/) { return 0; } //non const for some modifications and getting data. Have 1 script with it.
         virtual uint64 GetData64(uint64 /*id = 0*/) const{ return 0; }
         virtual void SetData(uint32 /*id*/, uint32 /*value*/) {}
@@ -222,7 +222,7 @@ class TC_GAME_API UnitAI
         // Called at any Damage from any attacker (before damage apply)
         // Note: it for recalculation damage or special reaction at damage
         // for attack reaction use AttackedBy called for not DOT damage in Unit::DealDamage also
-        virtual void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/, DamageEffectType dmgType) { }
+        virtual void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/, DamageEffectType /*dmgType*/) { }
 
         // Called when the creature receives heal
         virtual void HealReceived(Unit* /*done_by*/, uint32& /*addhealth*/) {}

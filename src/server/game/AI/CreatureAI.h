@@ -147,7 +147,7 @@ public:
     virtual void SpellFinishCast(SpellInfo const* /*spell*/) {}
 
     // Called when the creature is target of hostile action: swing, hostile spell landed, fear/etc). It's can be BEFORE EnterCombat
-    virtual void AttackedBy(Unit* attacker) {}
+    virtual void AttackedBy(Unit* /*attacker*/) {}
     virtual bool IsEscorted() { return false; }
 
     // Called when creature is spawned or respawned (for reseting variables)
@@ -178,8 +178,8 @@ public:
     virtual void OwnerAttacked(Unit* /*target*/) {}
 
     // Called when a creature regen one of his power
-    virtual void RegeneratePower(Powers power, float& value) {}
-    virtual void SetPower(Powers power, int32 value) {}
+    virtual void RegeneratePower(Powers /*power*/, float& /*value*/) {}
+    virtual void SetPower(Powers /*power*/, int32 /*value*/) {}
 
     virtual void RecalcStats() {}
 
@@ -188,7 +188,7 @@ public:
     // Called at any threat added from any attacker (before threat apply)
     virtual void OnAddThreat(Unit* /*victim*/, float& /*fThreat*/, SpellSchoolMask /*schoolMask*/, SpellInfo const* /*threatSpell*/) {}
 
-    virtual void CalcExitVehiclePos(Position & pos) {}
+    virtual void CalcExitVehiclePos(Position & /*pos*/) {}
 
     // called when the corpse of this creature gets removed
     virtual void CorpseRemoved(uint32& /*respawnDelay*/) {}
@@ -206,7 +206,7 @@ public:
     virtual void OnRemoveAuraTarget(Unit* /*target*/, uint32 /*spellId*/, AuraRemoveMode /*mode*/) {}
     virtual void OnInterruptCast(Unit* /*caster*/, uint32 /*spellId*/, uint32 /*curSpellID*/, uint32 /*schoolMask*/) {}
     virtual void OnAreaTriggerCast(Unit* /*caster*/, Unit* /*target*/, uint32 /*spellId*/, uint32 /*createATSpellId*/) {}
-    virtual void OnAreaTriggerDespawn(uint32 spellId, Position pos, bool duration) {}
+    virtual void OnAreaTriggerDespawn(uint32 /*spellId*/, Position /*pos*/, bool /*duration*/) {}
 
     virtual void AddClientVisibility(ObjectGuid /*guid*/) { }
     virtual void RemoveClientVisibility(ObjectGuid /*guid*/) { }
