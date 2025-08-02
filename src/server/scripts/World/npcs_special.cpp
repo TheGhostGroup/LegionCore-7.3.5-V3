@@ -7224,10 +7224,10 @@ struct npc_hearthstation : public ScriptedAI
 
     void IsSummonedBy(Unit* owner) override
     {
-        me->AddDelayedEvent(100, [=]() -> void
+        me->AddDelayedEvent(100, [this]() -> void
         {
             me->RemoveFlag(UNIT_FIELD_NPC_FLAGS, UNIT_NPC_FLAG_SPELLCLICK);
-
+            if (auto owner = me->GetAnyOwner())
             DoCast(owner, 46598, true);
         });
     }
@@ -7325,7 +7325,7 @@ struct npc_instant_statue_pedestal : public ScriptedAI
     void IsSummonedBy(Unit* owner) override
     {
         DoCast(owner, 75731, true);
-        me->AddDelayedEvent(500, [=]() -> void { me->AddAura(52844, me); });
+        me->AddDelayedEvent(500, [this]() -> void { me->AddAura(52844, me); });
     }
 };
 
@@ -7339,7 +7339,11 @@ struct npc_infant_spider : public ScriptedAI
     void IsSummonedBy(Unit* owner) override
     {
         check = 200;
-        me->AddDelayedEvent(100, [=]() -> void { DoCast(owner, 46598, true); });
+        me->AddDelayedEvent(100, [this]() -> void 
+        { 
+            if (auto owner = me->GetAnyOwner())
+            DoCast(owner, 46598, true); 
+        });
     }
 
     void UpdateAI(uint32 diff) override
