@@ -23,4 +23,4 @@ enum CreaturesIds
     NPC_SAP_PUDDLE  = 61613
 };
 
-#endif SIEGE_NIUZOA_TEMPLE_H_
+#endif // SIEGE_NIUZOA_TEMPLE_H_
