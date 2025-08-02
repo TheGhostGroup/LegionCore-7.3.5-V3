@@ -142,7 +142,7 @@ void DynamicMapTree::update(uint32 t_diff)
 
 struct DynamicTreeIntersectionCallback
 {
-    explicit DynamicTreeIntersectionCallback(PhaseShift const& phaseShift) : _didHit(false), _phaseShift(phaseShift), _go(nullptr) { }
+    explicit DynamicTreeIntersectionCallback(PhaseShift const& phaseShift) : _go(nullptr),  _didHit(false), _phaseShift(phaseShift) { }
 
     bool operator()(G3D::Ray const& r, GameObjectModel const& obj, float& distance)
     {
@@ -166,7 +166,7 @@ private:
 
 struct DynamicTreeisInLineOfSightCallback
 {
-    explicit DynamicTreeisInLineOfSightCallback(PhaseShift const& phaseShift) : _didHit(false), _phaseShift(phaseShift), _go(nullptr) { }
+    explicit DynamicTreeisInLineOfSightCallback(PhaseShift const& phaseShift) :_go(nullptr), _didHit(false), _phaseShift(phaseShift) { }
 
     bool operator()(G3D::Ray const& r, GameObjectModel const& obj, float& distance)
     {
