@@ -681,11 +681,11 @@ class spell_monk_purifying_brew: public SpellScript
 
             if (AuraEffect* aurEff2 = caster->GetAuraEffect(238129, EFFECT_2)) // Quick Sip
             {
-                uint32 dur = aurEff2->GetAmount() * IN_MILLISECONDS;
+                uint32 dur = aurEff2->GetAmount() * static_cast<double>(IN_MILLISECONDS);
                 if (Aura* aura = caster->GetAura(215479))
                     aura->SetDuration(aura->GetDuration() + dur);
                 else
-                    caster->AddAura(215479, caster, nullptr, NULL, dur);
+                    caster->AddAura(215479, caster, nullptr, dur);
             }
         }
     }
@@ -2915,7 +2915,7 @@ class spell_monk_breath_of_fire : public SpellScript
                 if (AuraEffect const* aurEff = caster->GetAuraEffect(224489, EFFECT_0)) // Firestone Walker's Vintage Brew
                 {
                     uint8 count = GetSpell()->GetTargetCount();
-                    int32 cdmod = aurEff->GetAmount() * IN_MILLISECONDS;
+                    int32 cdmod = aurEff->GetAmount() * static_cast<double>(IN_MILLISECONDS);
                     if (count > 3)
                         count = 3;
                     plr->ModifySpellCooldown(115203, -cdmod * count);

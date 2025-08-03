@@ -773,7 +773,7 @@ class spell_druid_rejuvenation : public SpellScriptLoader
                                 if (Aura* aur = unitTarget->GetAura(GetSpellInfo()->Id, caster->GetGUID()))
                                 {
                                     if (aurEff->GetTickNumber() == 2 || aurEff->GetTickNumber() == 3 || aurEff->GetTickNumber() == 4)
-                                        aur->SetDuration(aur->GetDuration() + aurEf->GetAmount() * IN_MILLISECONDS);
+                                        aur->SetDuration(aur->GetDuration() + aurEf->GetAmount() * static_cast<double>(IN_MILLISECONDS));
                                 }
                             }
                         }
@@ -2036,7 +2036,7 @@ class spell_dru_swiftmend : public SpellScript
 			if (const SpellInfo* spellInfo = sSpellMgr->GetSpellInfo(188550))
 				if (Aura* aur = target->GetAura(spellInfo->Id, plr->GetGUID()))
 					if (AuraEffect const* aurEf = plr->GetAuraEffect(207943, EFFECT_0))
-						aur->SetDuration(aur->GetDuration() + aurEf->GetAmount() * IN_MILLISECONDS);
+						aur->SetDuration(aur->GetDuration() + aurEf->GetAmount() * static_cast<double>(IN_MILLISECONDS));
     }
 
     void Register() override

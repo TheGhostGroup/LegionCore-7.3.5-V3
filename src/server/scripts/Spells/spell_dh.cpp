@@ -1675,7 +1675,7 @@ class spell_dh_fueled_by_pain : public AuraScript
     {
         if (Unit* caster = eventInfo.GetActor())
         {
-            uint32 basedur = aurEff->GetAmount() * IN_MILLISECONDS;
+            uint32 basedur = aurEff->GetAmount() * static_cast<double>(IN_MILLISECONDS);
             if (AuraEffect* eff = caster->GetAuraEffect(238046, EFFECT_0)) // Lingering Ordeal
                 basedur += eff->GetAmount();
 

@@ -1732,7 +1732,7 @@ class spell_pal_judgment : public SpellScriptLoader
 
                 if (AuraEffect* aurEff = caster->GetAuraEffect(231657, EFFECT_0)) // Judgment (lvl 2 for Protection)
                 {
-                    int32 second = aurEff->GetAmount() * IN_MILLISECONDS;
+                    int32 second = aurEff->GetAmount() * static_cast<double>(IN_MILLISECONDS);
                     if (GetSpell()->IsCritForTarget(target))
                         second *= 2;
                     if (Player* _player = caster->ToPlayer())
@@ -2653,7 +2653,7 @@ class spell_pal_greater_blessing_of_wisdom : public SpellScriptLoader
 
         void HandleTick(AuraEffect const* aurEff, float& amount, Unit* /*target*/)
         {
-            amount /= GetSpellInfo()->Effects[EFFECT_2]->BasePoints * IN_MILLISECONDS / float(aurEff->GetPeriod());
+            amount /= GetSpellInfo()->Effects[EFFECT_2]->BasePoints * static_cast<double>(IN_MILLISECONDS) / float(aurEff->GetPeriod());
         }
 
         void Register() override
@@ -2754,9 +2754,9 @@ class spell_pal_hammer_of_reckoning : public SpellScript
                 if (aur->GetStackAmount() == GetSpellInfo()->Effects[EFFECT_1]->BasePoints)
                 {
                     if (caster->HasSpell(231895))
-                        caster->CastSpellDuration(caster, 231895, true, GetSpellInfo()->Effects[EFFECT_3]->BasePoints * IN_MILLISECONDS);
+                        caster->CastSpellDuration(caster, 231895, true, GetSpellInfo()->Effects[EFFECT_3]->BasePoints * static_cast<double>(IN_MILLISECONDS));
                     else
-                        caster->CastSpellDuration(caster, 31884, true, GetSpellInfo()->Effects[EFFECT_2]->BasePoints * IN_MILLISECONDS);
+                        caster->CastSpellDuration(caster, 31884, true, GetSpellInfo()->Effects[EFFECT_2]->BasePoints * static_cast<double>(IN_MILLISECONDS));
                 }
             }
             caster->RemoveAurasDueToSpell(247677);

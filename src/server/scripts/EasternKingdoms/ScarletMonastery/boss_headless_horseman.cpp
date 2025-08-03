@@ -455,7 +455,7 @@ struct boss_headless_horseman : public ScriptedAI
             me->AddUnitMovementFlag(MOVEMENTFLAG_DISABLE_GRAVITY);
             me->SetSpeed(MOVE_WALK, 5.0f, true);
             me->SetHomePosition(1086.2392f, 627.4357f, -0.054f, 0.0199f);
-            me->AddDelayedEvent(4000, [=]() -> void { DoAction(ACTION_3); });
+            me->AddDelayedEvent(4000, [this]() -> void { DoAction(ACTION_3); });
 
             DoCast(me, SPELL_RHYME_BIG, false);
             say_timer1 = 100;
