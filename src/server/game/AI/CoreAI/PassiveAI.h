@@ -59,7 +59,7 @@ class TC_GAME_API NullCreatureAI : public CreatureAI
         void UpdateAI(uint32) {}
         void EnterEvadeMode() {}
         void OnCharmed(bool /*apply*/) {}
-        void EnterCombat(Unit* who) {}
+        void EnterCombat(Unit* /*who*/) {}
 
         static int Permissible(const Creature*) { return PERMIT_BASE_IDLE;  }
 };
