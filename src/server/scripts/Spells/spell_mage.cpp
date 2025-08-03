@@ -1204,7 +1204,8 @@ class spell_mage_combustion : public SpellScriptLoader
                     return;
 
                 if (Player* _player = caster->ToPlayer())
-                    lastData = amount = CalculatePct(_player->GetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_CRIT_SPELL), 50);
+                    lastData = amount = CalculatePct(
+                        _player->GetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + CR_CRIT_SPELL), 50);
             }
 
             void OnTick(AuraEffect const* aurEff)
@@ -1215,7 +1216,7 @@ class spell_mage_combustion : public SpellScriptLoader
 
                 if (Player* _player = caster->ToPlayer())
                 {
-                    uint32 crit = _player->GetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_CRIT_SPELL);
+                    uint32 crit = _player->GetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + CR_CRIT_SPELL);
                     int32 critData = CalculatePct(crit, 50); // 50%
                     if (lastData != critData)
                     {
