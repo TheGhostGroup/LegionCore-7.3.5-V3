@@ -3514,7 +3514,7 @@ class spell_item_walling_souls : public AuraScript
                 int32 CapCD = GetSpellInfo()->Effects[EFFECT_2]->BasePoints;
                 if (bp > CapCD)
                     bp = CapCD;
-                plr->ModifySpellCooldown(242609, -bp * IN_MILLISECONDS);
+                plr->ModifySpellCooldown(242609, -bp * static_cast<double>(IN_MILLISECONDS));
             }
         }
     }

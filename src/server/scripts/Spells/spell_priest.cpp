@@ -806,7 +806,7 @@ class spell_pri_power_word_shield : public SpellScriptLoader
                         if (AuraEffect const* aurEff = caster->GetAuraEffect(211563, EFFECT_0)) // Item - Priest T19 Discipline 4P Bonus
                             if (Aura* aur = target->GetAura(194384, caster->GetGUID()))
                                 if (caster->HasAura(47536))
-                                    aur->SetDuration(aur->GetDuration() + aurEff->GetAmount() * IN_MILLISECONDS);
+                                    aur->SetDuration(aur->GetDuration() + aurEff->GetAmount() * static_cast<double>(IN_MILLISECONDS));
                     }
                 }
             }
@@ -1770,7 +1770,7 @@ class spell_pri_evangelism : public SpellScript
         {
             if (Unit* unitTarget = GetHitUnit())
             {
-                int32 dur = GetSpellInfo()->Effects[EFFECT_0]->BasePoints * IN_MILLISECONDS;
+                int32 dur = GetSpellInfo()->Effects[EFFECT_0]->BasePoints * static_cast<double>(IN_MILLISECONDS);
                 if (Aura* aura = unitTarget->GetAura(caster->HasAura(214205) ? 214206 : 194384, caster->GetGUID()))
                     aura->SetDuration(aura->GetDuration() + dur);
             }

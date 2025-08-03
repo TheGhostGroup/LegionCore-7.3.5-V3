@@ -117,7 +117,7 @@ public:
             me->SetPowerType(POWER_ENERGY);
             me->SetPower(POWER_ENERGY, 0);
 
-            if (instance->GetBossState(DATA_MEGAERA != NOT_STARTED))
+            if (instance->GetBossState(DATA_MEGAERA) != NOT_STARTED)
                 instance->SetBossState(DATA_MEGAERA, NOT_STARTED);
 
             instance->SendEncounterUnit(ENCOUNTER_FRAME_DISENGAGE, me);
@@ -212,7 +212,7 @@ struct megaera_headAI : public ScriptedAI
                     if (megaerahead->IsAlive() && !megaerahead->isInCombat())
                         DoZoneInCombat(megaerahead, 150.0f);
 
-        if (instance->GetBossState(DATA_MEGAERA != IN_PROGRESS))
+        if (instance->GetBossState(DATA_MEGAERA) != IN_PROGRESS)
             instance->SetBossState(DATA_MEGAERA, IN_PROGRESS);
     }
 };

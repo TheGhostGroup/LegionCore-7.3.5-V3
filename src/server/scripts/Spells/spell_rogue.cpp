@@ -1152,7 +1152,7 @@ class spell_rog_nightblade : public SpellScriptLoader
             {
                 if (Unit* caster = GetCaster())
                     if (AuraEffect* aurEff = caster->GetAuraEffect(211661, EFFECT_0)) // Item - Rogue T19 Subtlety 2P Bonus
-                        duration += aurEff->GetAmount() * GetAura()->GetComboPoints() * IN_MILLISECONDS;
+                        duration += aurEff->GetAmount() * GetAura()->GetComboPoints() * static_cast<double>(IN_MILLISECONDS);
             }
 
             void Register() override
@@ -1198,7 +1198,7 @@ class spell_rog_cut_to_the_chase : public SpellScript
                                     Trinity::Containers::RandomResizeList(auraList, 1);
 
                                 uint32 spellId = *auraList.begin();
-                                int32 dur = eff2->GetAmount() * IN_MILLISECONDS;
+                                int32 dur = eff2->GetAmount() * static_cast<double>(IN_MILLISECONDS);
 
                                 caster->AddAura(spellId, caster, nullptr, 0, dur, dur);
                             }
