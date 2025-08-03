@@ -2786,7 +2786,7 @@ struct npc_invasion_point_bunny : ScriptedAI
             if (me->GetCurrentZoneID() == 9128 || me->GetCurrentZoneID() == 9299)
                 timer2 = 16000;
 
-            me->AddDelayedEvent(5000, [=]() -> void
+            me->AddDelayedEvent(5000, [this]() -> void
             {
                 if (me->GetCurrentZoneID() == 9127 || me->GetCurrentZoneID() == 9298)
                     timer1 = 34000;
@@ -2847,7 +2847,7 @@ struct npc_decimax : ScriptedAI
         use = true;
         //me->SetReactState(REACT_PASSIVE); // �������� �������� � ������ �� �� 250242.
         DoCast(250242);
-        me->AddDelayedEvent(3000, [=]() -> void
+        me->AddDelayedEvent(3000, [this]() -> void
         {
             if (auto c = me->FindNearestCreature(126007, 500.0f))
                 c->CastSpell(me, 250234, true);
@@ -2867,7 +2867,7 @@ struct npc_temporal_anomaly : ScriptedAI
     void Reset() override
     {
         use = false;
-        me->AddDelayedEvent(5000, [=]() -> void
+        me->AddDelayedEvent(5000, [this]() -> void
         {
             me->RemoveFlag(UNIT_FIELD_NPC_FLAGS, UNIT_NPC_FLAG_SPELLCLICK);
             DoCast(me, 252456, true);
@@ -2919,7 +2919,7 @@ struct npc_demon_hunter_val : ScriptedAI
     void Reset() override
     {
         use = false;
-        me->AddDelayedEvent(5000, [=]() -> void
+        me->AddDelayedEvent(5000, [this]() -> void
         {
             DoCast(250898);
             me->RemoveFlag(UNIT_FIELD_NPC_FLAGS, UNIT_NPC_FLAG_SPELLCLICK);
@@ -2971,7 +2971,7 @@ struct npc_felflame_invader : ScriptedAI
     {
         events.Reset();
 
-        me->AddDelayedEvent(5000, [=]() -> void
+        me->AddDelayedEvent(5000, [this]() -> void
         {
             if (me->GetCurrentZoneID() == 9100)
             {
@@ -3049,7 +3049,7 @@ struct npc_felflame_subjugator : ScriptedAI
         events.Reset();
         me->RemoveAllAreaObjects();
 
-        me->AddDelayedEvent(5000, [=]() -> void
+        me->AddDelayedEvent(5000, [this]() -> void
         {
             if (me->GetCurrentZoneID() == 9128 || me->GetCurrentZoneID() == 9299)
             {
@@ -3264,7 +3264,7 @@ struct npc_magma_giant : ScriptedAI
 
         introDone = true;
         me->SetHomePosition(663.905f, 623.85f, 40.26792f, 0.0f);
-        me->AddDelayedEvent(2000, [=]() -> void { me->GetMotionMaster()->MovePoint(1, 663.905f, 623.85f, 40.26792f); });
+        me->AddDelayedEvent(2000, [this]() -> void { me->GetMotionMaster()->MovePoint(1, 663.905f, 623.85f, 40.26792f); });
     }
 
     void MovementInform(uint32 type, uint32 data) override
@@ -3360,7 +3360,7 @@ struct npc_emblazoned_fire_tamer : ScriptedAI
 
     void Reset() override
     {
-        me->AddDelayedEvent(5000, [=]() -> void { DoCast(252778); });
+        me->AddDelayedEvent(5000, [this]() -> void { DoCast(252778); });
     }
 };
 

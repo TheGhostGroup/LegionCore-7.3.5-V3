@@ -1146,7 +1146,7 @@ class spell_warl_corruption : public SpellScriptLoader
                     if (AuraEffect const* aurEff = caster->GetAuraEffect(196103, EFFECT_0)) // Absolute Corruption
                     {
                         if (GetUnitOwner() && GetUnitOwner()->ToPlayer())
-                            duration = aurEff->GetAmount() * IN_MILLISECONDS;
+                            duration = aurEff->GetAmount() * static_cast<double>(IN_MILLISECONDS);
                         else
                             duration = -1;
                     }

@@ -229,9 +229,9 @@ public:
                 ApplyPercentModFloatVar(offattackspeed, amount, false);
 
                 if (entryId != 69792)
-                    me->SetFloatValue(UNIT_FIELD_ATTACK_ROUND_BASE_TIME+OFF_ATTACK, offattackspeed ? offattackspeed: mainattackspeed);
+                    me->SetFloatValue(UNIT_FIELD_ATTACK_ROUND_BASE_TIME + static_cast<int>(OFF_ATTACK), offattackspeed ? offattackspeed: mainattackspeed);
 
-                me->SetFloatValue(UNIT_FIELD_ATTACK_ROUND_BASE_TIME+BASE_ATTACK, mainattackspeed);
+                me->SetFloatValue(UNIT_FIELD_ATTACK_ROUND_BASE_TIME + static_cast<int>(BASE_ATTACK), mainattackspeed);
                 me->SetFloatValue(UNIT_FIELD_MOD_SPELL_HASTE, owner->GetFloatValue(UNIT_FIELD_MOD_SPELL_HASTE));
                 me->SetFloatValue(UNIT_FIELD_MOD_CASTING_SPEED, owner->GetFloatValue(UNIT_FIELD_MOD_CASTING_SPEED));
             }
@@ -7435,7 +7435,7 @@ struct npc_train_wrecker : public ScriptedAI
                 {
                     me->SetFacingTo(target->GetOrientation());
                     me->HandleEmoteCommand(EMOTE_ONESHOT_ATTACK1H);
-                    _timer = 1.5 * IN_MILLISECONDS;
+                    _timer = 1.5 * static_cast<double>(IN_MILLISECONDS);
                     _nextAction = EVENT_DO_WRECK;
                 }
                 else
