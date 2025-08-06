@@ -410,7 +410,7 @@ typedef std::list<uint32> PlayerCreateInfoQuests;
 
 struct PlayerInfo
 {
-    PlayerInfo() : mapId(0), areaId(0), positionX(0.0f), positionY(0.0f), positionZ(0.0f), orientation(0.0f), displayId_m(0), displayId_f(0), levelInfo(nullptr)
+    PlayerInfo() : mapId(0), areaId(0), displayId_m(0), displayId_f(0), positionX(0.0f), positionY(0.0f), positionZ(0.0f), orientation(0.0f), levelInfo(nullptr)
     { }
 
     uint32 mapId;
