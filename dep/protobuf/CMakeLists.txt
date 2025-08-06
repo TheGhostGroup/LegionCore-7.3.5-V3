@@ -1,4 +1,4 @@
-# Copyright (C) 2008-2016 TrinityCore <http://www.trinitycore.org/>
+# This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
 #
 # This file is free software; as a special exception the author gives
 # unlimited permission to copy and/or distribute it, with or without
@@ -56,13 +56,6 @@ else()
   )
 endif()
 
-if (UNIX)
-  # Enable the default unix export behaviour for protobuf so we don't
-  # need to patch it's sources.
-  string(REPLACE "-fvisibility=hidden" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-  string(REPLACE "-fvisibility=hidden" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-endif()
-
 add_library(protobuf ${protobuf_STAT_SRCS})
 
 target_include_directories(protobuf
@@ -81,12 +74,11 @@ target_link_libraries(protobuf
 if (BUILD_SHARED_LIBS)
   target_compile_definitions(protobuf
     PRIVATE
-      -DLIBPROTOBUF_EXPORTS
-      -DLIBPROTOC_EXPORTS
+      LIBPROTOBUF_EXPORTS
+      LIBPROTOC_EXPORTS
     PUBLIC
-      -DPROTOBUF_USE_DLLS)
+      PROTOBUF_USE_DLLS)
 endif()
-
 
 if (MSVC)
   target_compile_options(protobuf
@@ -95,13 +87,13 @@ if (MSVC)
 
   target_compile_definitions(protobuf
     PRIVATE
-      -D_SCL_SECURE_NO_WARNINGS)
+      _SCL_SECURE_NO_WARNINGS)
 endif()
 
 set_target_properties(protobuf
-    PROPERTIES
-      FOLDER
-        "dep")
+  PROPERTIES
+    FOLDER
+      "dep")
 
 if (BUILD_SHARED_LIBS)
   if (UNIX)
@@ -113,4 +105,18 @@ if (BUILD_SHARED_LIBS)
       RUNTIME
         DESTINATION "${CMAKE_INSTALL_PREFIX}")
   endif()
+endif()
+
+# Generate precompiled header
+if(USE_COREPCH)
+  list(APPEND protobuf_PCH_HEADERS
+    <google/protobuf/descriptor.pb.h>
+    <google/protobuf/io/coded_stream.h>
+    <google/protobuf/wire_format.h>
+    <google/protobuf/stubs/hash.h>
+    <google/protobuf/stubs/strutil.h>
+    <algorithm>
+    <memory>)
+
+  add_cxx_pch(protobuf "${protobuf_PCH_HEADERS}")
 endif()
