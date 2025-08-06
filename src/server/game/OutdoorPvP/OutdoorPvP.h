@@ -254,13 +254,13 @@ class TC_GAME_API OutdoorPvP : public ZoneScript
 
         // handle npc/player kill
         virtual void HandleKill(Player* killer, Unit* killed);
-        virtual void HandleKill(Unit* killer, Unit* killed) {};
+        virtual void HandleKill(Unit* /*killer*/, Unit* /*killed*/) {};
         virtual void HandleKillImpl(Player* /*killer*/, Unit* /*killed*/) {}
-        virtual void HandlePlayerKilled(Player* p_Player) { }
-        virtual void HandleRewardHonor(Player* p_Player) { }
+        virtual void HandlePlayerKilled(Player* /*player*/) { }
+        virtual void HandleRewardHonor(Player* /*player*/) { }
         virtual void FillCustomPvPLoots(Player* /*looter*/, Loot& /*loot*/, ObjectGuid /*container*/) { }
 
-        virtual void HandleSpellClick(Player* player, Unit* target) {}
+        virtual void HandleSpellClick(Player* /*player*/, Unit* /*target*/) {}
 
         // checks if player is in range of a capture credit marker
         bool IsInsideObjective(Player* player) const;
@@ -299,10 +299,10 @@ class TC_GAME_API OutdoorPvP : public ZoneScript
         void RemoveZone(uint32 zoneId) { m_zoneSet.erase(zoneId); }
         std::set<uint32> m_zoneSet;
 
-        virtual void Initialize(uint32 zone) {}
-        virtual void BroadcastPacketByZone(const WorldPacket & data, uint32 zone) { BroadcastPacket(data); }
+        virtual void Initialize(uint32 /*zone*/) {}
+        virtual void BroadcastPacketByZone(const WorldPacket & data, uint32 /*zone*/) { BroadcastPacket(data); }
         virtual void ApplyOnEveryPlayerInZone(std::function<void(Player*)> function, uint32 zone = 0);
-        virtual void HandleGameEventStart(uint32 eventId) {}
+        virtual void HandleGameEventStart(uint32 /*eventId*/) {}
         void RegisterZone(uint32 zoneid);
     protected:
         virtual void SendRemoveWorldStates(Player* /*player*/) {}

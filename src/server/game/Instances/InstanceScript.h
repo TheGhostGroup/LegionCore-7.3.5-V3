@@ -214,7 +214,7 @@ class TC_GAME_API InstanceScript : public ZoneScript
 
         void OnGameObjectCreate(GameObject* go) override;
         void OnGameObjectRemove(GameObject* go) override;
-        virtual void OnLootChestOpen(Player* player, Loot* loot, const GameObject* go) {};
+        virtual void OnLootChestOpen(Player* /*player*/, Loot* /*loot*/, const GameObject* /*go*/) {};
 
         // For use in InstanceScript
         virtual void OnPlayerEnterForScript(Player* player);

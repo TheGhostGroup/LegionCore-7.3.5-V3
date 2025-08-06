@@ -2829,7 +2829,7 @@ public:
 
 
 
-void AddSC_Mardum()
+void AddSC_zone_mardum()
 {
     new sceneTrigger_dh_init();
     new go_q40077();

@@ -32,7 +32,7 @@ public:
             healthPct = 66;
         }
 
-        void EnterCombat(Unit* unit)
+        void EnterCombat(Unit* /*unit*/)
         {
             events.RescheduleEvent(EVENT_1, 10000);
             events.RescheduleEvent(EVENT_2, 23000);
@@ -45,7 +45,7 @@ public:
             DoZoneInCombat(summon, 150.0f);
         }
 
-        void DamageTaken(Unit* /*attacker*/, uint32& damage, DamageEffectType dmgType)
+        void DamageTaken(Unit* /*attacker*/, uint32& /*damage*/, DamageEffectType /*dmgType*/)
         {
             if (me->HealthBelowPct(healthPct))
             {
@@ -111,11 +111,11 @@ public:
 		ObjectGuid targetMove;
 
 
-        void EnterCombat(Unit* unit)
+        void EnterCombat(Unit* /*unit*/)
         {
         }
 
-        void IsSummonedBy(Unit* targ)
+        void IsSummonedBy(Unit* /*targ*/)
         {
             if (Creature* owner = me->FindNearestCreature(94015, 100.0f, true))
             {
@@ -175,7 +175,7 @@ class spell_mark_of_kazzak_legion : public SpellScriptLoader
         {
             PrepareAuraScript(spell_mark_of_kazzak_legion_AuraScript);
 
-            void OnProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+            void OnProc(AuraEffect const* /*aurEff*/, ProcEventInfo& eventInfo)
             {
                 Unit* caster = GetCaster();
                 if(!caster)
@@ -212,7 +212,7 @@ class spell_mark_of_kazzak_legion_trigger : public SpellScriptLoader
         {
             PrepareAuraScript(spell_mark_of_kazzak_legion_trigger_AuraScript);
 
-            void OnTick(AuraEffect const* aurEff)
+            void OnTick(AuraEffect const* /*aurEff*/)
             {
                 PreventDefaultAction();
 
@@ -256,7 +256,7 @@ class spell_supreme_doom : public SpellScriptLoader
                 }
             }
 
-            void HandleScriptEffect(SpellEffIndex effIndex)
+            void HandleScriptEffect(SpellEffIndex /*effIndex*/)
             {
                 if (Unit* caster = GetCaster())
                 {

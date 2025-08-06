@@ -151,7 +151,7 @@ void AddSC_boss_saprish();
 void AddSC_boss_viceroy_nezhar();
 void AddSC_boss_lura();
 
-void AddSC_Mardum();
+void AddSC_zone_mardum();
 void AddSC_warden_prison();
 void AddSC_invasion_point_world_bosses();
 void AddSC_invasion_point_argus();
@@ -329,7 +329,7 @@ void AddBrokenIslesScripts()
     AddSC_boss_viceroy_nezhar();
     AddSC_boss_lura();
     
-    AddSC_Mardum();
+    AddSC_zone_mardum();
     AddSC_warden_prison();
     AddSC_invasion_point_world_bosses();
     AddSC_invasion_point_argus();

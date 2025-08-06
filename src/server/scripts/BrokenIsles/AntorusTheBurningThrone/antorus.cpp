@@ -14,13 +14,13 @@ struct npc_atbt_flamewear : public ScriptedAI
         events.Reset();
     }
 
-    void EnterCombat(Unit* who) override
+    void EnterCombat(Unit* /*who*/) override
     {
         events.RescheduleEvent(EVENT_1, 1500);
         events.RescheduleEvent(EVENT_2, 10000);
     }
 
-    void SetGUID(const ObjectGuid& guid, int32 type) override
+    void SetGUID(const ObjectGuid& guid, int32 /*type*/) override
     {
         targs.push_back(guid);
         if (targs.size() != 2)
@@ -123,7 +123,7 @@ struct npc_atbt_battleship : public ScriptedAI
 {
     npc_atbt_battleship(Creature* cre) : ScriptedAI(cre) {}
 
-    void IsSummonedBy(Unit* owner) override
+    void IsSummonedBy(Unit* /*owner*/) override
     {
         me->SetReactState(REACT_PASSIVE);
         me->SetCanFly(true);
@@ -202,7 +202,7 @@ public:
         return true;
     }
 
-    bool OnGossipSelect(Player* player, Creature* me, uint32 sender, uint32 action)  override
+    bool OnGossipSelect(Player* player, Creature* me, uint32 /*sender*/, uint32 action)  override
     {
         if (me->GetEntry() == 125720)
             player->CastSpell(player, 254498);
@@ -233,7 +233,7 @@ class npc_atbt_muradin : public CreatureScript
 public:
     npc_atbt_muradin() : CreatureScript("npc_atbt_muradin") {}
 
-    bool OnGossipSelect(Player* player, Creature* me, uint32 sender, uint32 action)  override
+    bool OnGossipSelect(Player* player, Creature* /*me*/, uint32 /*sender*/, uint32 /*action*/)  override
     {
         player->CastSpell(player, 254311);
         player->NearTeleportTo(2825.47f, -4567.23f, 291.94f, 0.0f);
@@ -276,7 +276,7 @@ class spell_atbt_bound_by_fel : public AuraScript
                 caster->CastSpell(target, 252621);
     }
 
-    void OnApply(AuraEffect const* aurEff, AuraEffectHandleModes mode)
+    void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         if (!GetCaster() || !GetTarget())
             return;
@@ -289,7 +289,7 @@ class spell_atbt_bound_by_fel : public AuraScript
         cre->AI()->SetGUID(target->GetGUID());
     }
 
-    void SetGuid(uint32 type, ObjectGuid const& guid) override
+    void SetGuid(uint32 /*type*/, ObjectGuid const& guid)
     {
         second = guid;
     }
@@ -306,7 +306,7 @@ class spell_atbt_soulburn : public AuraScript
 {
     PrepareAuraScript(spell_atbt_soulburn);
 
-    void OnRemove(AuraEffect const* aurEff, AuraEffectHandleModes mode)
+    void OnRemove(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
     {
         Unit* target = GetTarget();
         if (!target)

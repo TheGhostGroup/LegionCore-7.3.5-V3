@@ -36,7 +36,7 @@ public:
             me->RemoveAllAreaObjects();
         }
 
-        void EnterCombat(Unit* unit) override
+        void EnterCombat(Unit* /*unit*/) override
         {
             events.RescheduleEvent(EVENT_1, urand(15000, 16000)); // SPELL_FIRE_BOOM
             events.RescheduleEvent(EVENT_2, urand(25000, 26000)); // SPELL_EARTHSHAKE_STOMP
@@ -118,7 +118,7 @@ public:
             me->RemoveAllAreaObjects();
         }
 
-        void EnterCombat(Unit* unit) override
+        void EnterCombat(Unit* /*unit*/) override
         {
             events.RescheduleEvent(EVENT_1, 5000);
             events.RescheduleEvent(EVENT_2, 45000);

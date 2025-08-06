@@ -189,7 +189,7 @@ struct boss_lorewalker_stonestep : public BossAI
             events.RescheduleEvent(EVENT_21, 9000);
             break;
         case ACTION_6:
-            me->AddDelayedCombat(6000, [=]() -> void { Talk(EVENT_SUN_4); });
+            me->AddDelayedCombat(6000, [this]() -> void { Talk(EVENT_SUN_4); });
             break;
         }
     }

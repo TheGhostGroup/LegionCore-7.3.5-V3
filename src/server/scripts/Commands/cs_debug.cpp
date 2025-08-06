@@ -1952,9 +1952,12 @@ public:
             return false;
 
         int32 Value = (int32) atoi(cval);
-        player->SetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_DAMAGE_DONE, player->GetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_DAMAGE_DONE) + Value);
-        player->SetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_HEALING_DONE, player->GetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_HEALING_DONE) + Value);
-        player->SetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_DAMAGE_TAKEN, player->GetUInt32Value(PLAYER_FIELD_COMBAT_RATINGS + CR_VERSATILITY_DAMAGE_TAKEN) + Value);
+        player->SetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_DAMAGE_DONE),
+        player->GetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_DAMAGE_DONE)) + Value);
+        player->SetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_HEALING_DONE), 
+        player->GetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_HEALING_DONE)) + Value);
+        player->SetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_DAMAGE_TAKEN), 
+        player->GetUInt32Value(static_cast<uint32>(PLAYER_FIELD_COMBAT_RATINGS) + static_cast<uint32>(CR_VERSATILITY_DAMAGE_TAKEN)) + Value);
         player->UpdateVersality();
         return true;
     }

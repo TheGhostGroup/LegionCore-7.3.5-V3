@@ -513,11 +513,12 @@ public:
                     return;                
             }
             
-            int8 current_wall = urand(0, 3);
+            
             for (uint8 i = 0; i < waves; ++i)
             {
-                me->AddDelayedEvent((timer*i + 1), [=]()-> void
+                me->AddDelayedEvent((timer*i + 1), [this]()-> void
                 {
+                    int8 current_wall = urand(0, 3);
                     float x = creeping_walls[current_wall].first.GetPositionX();
                     float y = creeping_walls[current_wall].first.GetPositionY();
                     float z = creeping_walls[current_wall].first.GetPositionZ();
@@ -545,6 +546,7 @@ public:
                         }
                     }
                 });
+                int8 current_wall = urand(0, 3);
                 if (urand(0,2) == 1)
                     current_wall = ((current_wall + 1) > 3 ? 0 : current_wall+1);
                 else
