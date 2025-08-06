@@ -450,7 +450,7 @@ enum DuelState
 
 struct DuelInfo
 {
-    DuelInfo() : initiator(ObjectGuid()), opponent(ObjectGuid()), arbiter(ObjectGuid()), state(DUEL_NOT_STARTED), outOfBoundTimer(0), countdownTimer(3000), isMounted(false) {}
+    DuelInfo() : initiator(ObjectGuid()), opponent(ObjectGuid()), arbiter(ObjectGuid()), state(DUEL_NOT_STARTED),  countdownTimer(3000), outOfBoundTimer(0), isMounted(false) {}
 
     ObjectGuid initiator;
     ObjectGuid opponent;
