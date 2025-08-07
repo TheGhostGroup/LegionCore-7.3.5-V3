@@ -4110,26 +4110,26 @@ void SmartScript::GetScript()
             e = sSmartScriptMgr->GetScript(-static_cast<int32>(me->GetDBTableGUIDLow()), mScriptType);
         if (e.empty())
             e = sSmartScriptMgr->GetScript(static_cast<int32>(me->GetEntry()), mScriptType);
-        FillScript(e, me, nullptr);
+        FillScript(std::move(e), me, nullptr);
     }
     else if (go)
     {
         e = sSmartScriptMgr->GetScript(-static_cast<int32>(go->GetDBTableGUIDLow()), mScriptType);
         if (e.empty())
             e = sSmartScriptMgr->GetScript(static_cast<int32>(go->GetEntry()), mScriptType);
-        FillScript(e, go, nullptr);
+        FillScript(std::move(e), go, nullptr);
     }
     else if (event)
     {
         e = sSmartScriptMgr->GetScript(-static_cast<int32>(event->GetDBTableGUIDLow()), mScriptType);
         if (e.empty())
             e = sSmartScriptMgr->GetScript(static_cast<int32>(event->GetEntry()), mScriptType);
-        FillScript(e, event, nullptr);
+        FillScript(std::move(e), event, nullptr);
     }
     else if (trigger)
     {
         e = sSmartScriptMgr->GetScript(static_cast<int32>(trigger->ID), mScriptType);
-        FillScript(e, nullptr, trigger);
+        FillScript(std::move(e), nullptr, trigger);
     }
 }
 

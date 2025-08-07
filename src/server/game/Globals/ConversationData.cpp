@@ -79,7 +79,7 @@ void ConversationDataStoreMgr::LoadConversations()
         bool isCreature = conversationCreature && !conversationCreature->empty();
         bool hasData = conversationData && !conversationData->empty();
 
-        if (!hasData || !isActor && !isCreature)
+        if (!hasData || (!isActor) && (!isCreature))
         {
             TC_LOG_ERROR("sql.sql", "ConversationDataStoreMgr::LoadConversations() >> Table `conversation` has conversation (GUID: " UI64FMTD ") with non existing conversation data %u, skipped.", guid, entry);
             continue;
@@ -115,7 +115,7 @@ void ConversationDataStoreMgr::LoadConversations()
 
         if (data.phaseGroup && data.phaseId)
         {
-            TC_LOG_ERROR("sql.sql", "Table `conversation` have conversation (GUID: %u Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
+            TC_LOG_ERROR("sql.sql", "Table `conversation` have conversation (GUID: %lu Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
             data.phaseGroup = 0;
         }
 

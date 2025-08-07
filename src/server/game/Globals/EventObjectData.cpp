@@ -137,7 +137,7 @@ void EventObjectDataStoreMgr::LoadEventObjects()
 
         if (data.phaseGroup && data.phaseId)
         {
-            TC_LOG_ERROR("sql.sql", "Table `eventobject` have eventobject (GUID: %u Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
+            TC_LOG_ERROR("sql.sql", "Table `eventobject` have eventobject (GUID: %lu Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
             data.phaseGroup = 0;
         }
 

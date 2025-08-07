@@ -1088,14 +1088,14 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
 
             if (apply != 0 && apply != 1)
             {
-                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_ID uses invalid apply value %u (Should be 0 or 1) for creature %u, skipped", apply, e.entryOrGuid);
+                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_ID uses invalid apply value %u (Should be 0 or 1) for creature %lu, skipped", apply, e.entryOrGuid);
                 return false;
             }
 
             PhaseEntry const* phase = sPhaseStore.LookupEntry(phaseId);
             if (!phase)
             {
-                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_ID uses invalid phaseid %u for creature %u, skipped", phaseId, e.entryOrGuid);
+                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_ID uses invalid phaseid %u for creature %lu, skipped", phaseId, e.entryOrGuid);
                 return false;
             }
 
@@ -1109,13 +1109,13 @@ bool SmartAIMgr::IsEventValid(SmartScriptHolder& e)
 
             if (apply != 0 && apply != 1)
             {
-                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_GROUP uses invalid apply value %u (Should be 0 or 1) for creature %u, skipped", apply, e.entryOrGuid);
+                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_GROUP uses invalid apply value %u (Should be 0 or 1) for creature %lu, skipped", apply, e.entryOrGuid);
                 return false;
             }
 
             if (!sDB2Manager.GetPhasesForGroup(phaseGroup))
             {
-                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_GROUP uses invalid phase group id %u for creature %u, skipped", phaseGroup, e.entryOrGuid);
+                TC_LOG_ERROR("sql.sql", "SmartScript: SMART_ACTION_SET_INGAME_PHASE_GROUP uses invalid phase group id %u for creature %lu, skipped", phaseGroup, e.entryOrGuid);
                 return false;
             }
             break;
