@@ -757,7 +757,7 @@ public:
             }
 
             if (attacker->GetGUID() != plGuid)
-                me->getThreatManager().addThreat(attacker, NULL);
+                me->getThreatManager().addThreat(attacker, 0.0f);
         }
 
         void JustDied(Unit* killer)

@@ -296,7 +296,7 @@ public:
 
             Talk(TSULONG_AGGRO);
 
-            dayphasetimer = 1.2 * IN_MILLISECONDS;
+            dayphasetimer = 1.2 * static_cast<double>(IN_MILLISECONDS);
 
             phase = PHASE_NIGHT;
             events.SetPhase(PHASE_NIGHT);

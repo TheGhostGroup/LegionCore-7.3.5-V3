@@ -578,10 +578,10 @@ public:
                         me->SetFacingToObject(go);
                     break;
                 case EVENT_7:
-                    me->GetMotionMaster()->MovePoint(EVENT_1 + NPC_THUNDER_FORGE, 7200.241f, 5255.292f, 65.98731f);
+                    me->GetMotionMaster()->MovePoint(uint32(EVENT_1) + uint32(NPC_THUNDER_FORGE), 7200.241f, 5255.292f, 65.98731f);
                     break;
-                case EVENT_1 + NPC_THUNDER_FORGE:
-                    events.RescheduleEvent(EVENT_2 + NPC_THUNDER_FORGE, 4 * IN_MILLISECONDS);
+                case uint32(EVENT_1) + uint32(NPC_THUNDER_FORGE):
+                    events.RescheduleEvent(uint32(EVENT_2) + uint32(NPC_THUNDER_FORGE), 4 * IN_MILLISECONDS);
                     break;
                 default:
                     break;
@@ -687,13 +687,13 @@ public:
                         me->GetMotionMaster()->MovePoint(EVENT_7, 7199.577f, 5254.172f, 66.27177f);
                         Talk(3);
                         break;
-                    case EVENT_2 + NPC_THUNDER_FORGE:
-                        events.RescheduleEvent(EVENT_3 + NPC_THUNDER_FORGE, 25 * IN_MILLISECONDS);
+                    case uint32(EVENT_2) + uint32(NPC_THUNDER_FORGE):
+                        events.RescheduleEvent(uint32(EVENT_3) + uint32(NPC_THUNDER_FORGE), 25 * IN_MILLISECONDS);
                         if (Creature* forge = me->FindNearestCreature(NPC_THUNDER_FORGE, 70.0f))
                             me->CastSpell(forge, SPELL_LIGHTING_STRIKE_COSMETIC_5);
                         break;
-                    case EVENT_3 + NPC_THUNDER_FORGE:
-                        events.RescheduleEvent(EVENT_2 + NPC_THUNDER_FORGE, 5 * IN_MILLISECONDS);
+                    case uint32(EVENT_3) + uint32(NPC_THUNDER_FORGE):
+                        events.RescheduleEvent(uint32(EVENT_2) + uint32(NPC_THUNDER_FORGE), 5 * IN_MILLISECONDS);
                         if (Creature* forge = me->FindNearestCreature(NPC_THUNDER_FORGE, 70.0f))
                             forge->CastSpell(forge, SPELL_LIGHTING_STRIKE_COSMETIC_4, true);
                         break;

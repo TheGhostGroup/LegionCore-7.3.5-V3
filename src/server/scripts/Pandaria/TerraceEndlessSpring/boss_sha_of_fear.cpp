@@ -1266,11 +1266,11 @@ public:
 
                     caster->AddAura(SPELL_LIGHT_WALL_VISUAL, caster);
 
-                    for (int i = 0; i <= 1; i++)
+                    for (int i = 0; i < 1; i++)
                     {
                         GetCaster()->SummonCreature(spawnWallOfLightVisualEntry, spawnWallOfLightVisual[i].GetPositionX(), spawnWallOfLightVisual[i].GetPositionY(), spawnWallOfLightVisual[i].GetPositionZ(), spawnWallOfLightVisual[i].GetOrientation(), TEMPSUMMON_MANUAL_DESPAWN, 0);
                     }
-                    for (int i = 0; i <= 6; i++)
+                    for (int i = 0; i < 6; i++)
                     {
                         GetCaster()->SummonCreature(spawnWallOfLightEntry, spawnWallOfLight[i].GetPositionX(), spawnWallOfLight[i].GetPositionY(), spawnWallOfLight[i].GetPositionZ(), spawnWallOfLight[i].GetOrientation(), TEMPSUMMON_MANUAL_DESPAWN, 0);
                     }
@@ -1731,7 +1731,8 @@ public:
 
             // handle targets reset 
             targets.clear();
-            targets.empty();
+            if (targets.empty())
+                return;
 
             Map::PlayerList const &PlayerList = GetCaster()->GetMap()->GetPlayers();
             if (PlayerList.isEmpty())

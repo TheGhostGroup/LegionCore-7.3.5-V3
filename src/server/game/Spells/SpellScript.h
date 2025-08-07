@@ -484,7 +484,7 @@ class TC_GAME_API SpellScript : public _SpellScript
         void SetCustomCastResultMessage(SpellCustomErrors result);
 
         // Call special function from scripts
-        virtual uint32 CallSpecialFunction(uint32 Num = 0) { return 0; }
+        virtual uint32 CallSpecialFunction(uint32 /*Num*/ = 0) { return 0; }
 };
 
 // AuraScript interface - enum used for runtime checks of script function calls
@@ -973,7 +973,7 @@ class TC_GAME_API AuraScript : public _SpellScript
         AuraApplication const* GetTargetApplication() const;
 
         // Call special function from scripts
-        virtual uint32 CallSpecialFunction(uint32 Num = 0) { return 0; }
+        virtual uint32 CallSpecialFunction(uint32 /*Num*/ = 0) { return 0; }
         virtual uint32 CallSpecialFunction(ObjectGuid const& /*GUID*/) { return 0; }
         virtual uint32 CallSpecialFunction(ObjectGuid& /*GUID*/) { return 0; }
 };

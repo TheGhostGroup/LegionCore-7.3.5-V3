@@ -337,7 +337,7 @@ int32 LoginRESTService::HandlePost(soap* soapClient)
         stmt->setUInt32(0, request->GetResult()->Id);
         callback.SetNextQuery(LoginDatabase.AsyncQuery(stmt));
     })
-        .WithChainingPreparedCallback([request](QueryCallback& callback, PreparedQueryResult lastPlayerCharactersResult)
+        .WithChainingPreparedCallback([request](QueryCallback& /*callback*/, PreparedQueryResult lastPlayerCharactersResult)
     {
         if (lastPlayerCharactersResult)
         {

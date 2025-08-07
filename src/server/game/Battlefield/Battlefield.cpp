@@ -1092,7 +1092,7 @@ bool BfCapturePoint::Update(uint32 diff)
                 HandlePlayerEnter(*itr);
 
     // get the difference of numbers
-    float fact_diff = ((float)m_activePlayers[0].size() - (float)m_activePlayers[1].size()) * diff / BATTLEFIELD_OBJECTIVE_UPDATE_INTERVAL;
+    float fact_diff = ((float)m_activePlayers[0].size() - (float)m_activePlayers[1].size()) * diff / (float)BATTLEFIELD_OBJECTIVE_UPDATE_INTERVAL;
     if (!fact_diff)
         return false;
 

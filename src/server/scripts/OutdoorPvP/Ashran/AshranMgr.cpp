@@ -19,8 +19,11 @@ OPvPCapturePoint_Middle::OPvPCapturePoint_Middle(OutdoorPvP* outdoor, eBattleTyp
     : OPvPCapturePoint(outdoor), m_BattleType(type), m_BattleFaction(p_Faction)
 {
     SetCapturePointData(g_CapturePoint[type]);
-    AddCreature(AshranGenericMobTypeID + type, SLGGenericMoPLargeAoI, TEAM_NONE, AshranMapID, g_CapturePoint[type].x, g_CapturePoint[type].y, g_CapturePoint[type].z, float(M_PI));
-    static_cast<OutdoorPvPAshran*>(m_PvP)->AddGenericMoPGuid(type, m_Creatures[AshranGenericMobTypeID + type]);
+    AddCreature(uint32(AshranGenericMobTypeID) + uint32(type), SLGGenericMoPLargeAoI, TEAM_NONE, AshranMapID, g_CapturePoint[type].x, g_CapturePoint[type].y, g_CapturePoint[type].z, float(M_PI));
+    static_cast<OutdoorPvPAshran*>(m_PvP)->AddGenericMoPGuid(
+    type,
+    m_Creatures[uint32(AshranGenericMobTypeID) + uint32(type)]
+);
 
     if (type == EmberfallTower)
     {
@@ -614,7 +617,7 @@ OutdoorPvPAshran::OutdoorPvPAshran()
     m_IsInitialized = false;
     m_WillBeReset = false;
     m_CurrentBattleState = WorldStateTheCrossroadsBattle;
-    m_NextBattleTimer = AshranTimeForBattle * IN_MILLISECONDS;
+    m_NextBattleTimer = uint32(AshranTimeForBattle) * uint32(IN_MILLISECONDS);
     m_MaxBattleTime = 0;
     m_GladiatorRespawnTime = 0;
     m_AncientArtifactTime = 0;
@@ -1297,7 +1300,7 @@ void OutdoorPvPAshran::ScheduleEventsUpdate(uint32 p_Diff)
     if (!m_IsInitialized)
         return;
 
-    uint32 l_TimeForWarn = AshranEventWarning * MINUTE * IN_MILLISECONDS;
+    uint32 l_TimeForWarn = uint32(AshranEventWarning) * uint32(MINUTE) * uint32(IN_MILLISECONDS);
     for (uint8 l_Index = 0; l_Index < MaxEvents; ++l_Index)
     {
         if (!m_AshranEvents[l_Index])
@@ -1378,7 +1381,7 @@ void OutdoorPvPAshran::EndEvent(uint8 p_EventID, bool p_ScheduleNext /*= true*/)
         return;
 
     if (p_ScheduleNext)
-        m_AshranEvents[p_EventID] = AshranEventTimer * MINUTE * IN_MILLISECONDS;
+        m_AshranEvents[p_EventID] = uint32(AshranEventTimer) * uint32(MINUTE) * uint32(IN_MILLISECONDS);
 
     switch (p_EventID)
     {
@@ -1715,13 +1718,15 @@ void OutdoorPvPAshran::OnCreatureCreate(Creature* creature)
             break;
         case HighWarlordVolrath:
             m_HighWarlordVolrath = creature->GetGUID();
-            AddCreature(SLGGenericMoPLargeAoI + TEAM_HORDE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
-            m_FactionGenericMoP[TEAM_HORDE] = m_Creatures[SLGGenericMoPLargeAoI + TEAM_HORDE];
+            AddCreature(uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_HORDE), SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID,
+            creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
+            m_FactionGenericMoP[TEAM_HORDE] = m_Creatures[uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_HORDE)];
             break;
         case GrandMarshalTremblade:
             m_GrandMasrhalTremblade = creature->GetGUID();
-            AddCreature(SLGGenericMoPLargeAoI + TEAM_ALLIANCE, SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
-            m_FactionGenericMoP[TEAM_ALLIANCE] = m_Creatures[SLGGenericMoPLargeAoI + TEAM_ALLIANCE];
+            AddCreature(uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_ALLIANCE), SLGGenericMoPLargeAoI, TEAM_OTHER, AshranMapID, 
+            creature->m_positionX, creature->m_positionY, creature->m_positionZ, float(M_PI));
+            m_FactionGenericMoP[TEAM_ALLIANCE] = m_Creatures[uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_ALLIANCE)];
             break;
         case AllianceSpiritGuide:
         case HordeSpiritGuide:
@@ -1796,10 +1801,10 @@ void OutdoorPvPAshran::OnCreatureRemove(Creature* creature)
             RemoveVignetteOnPlayers(VignetteKronus, TEAM_HORDE);
             break;
         case HighWarlordVolrath:
-            DelCreature(SLGGenericMoPLargeAoI + TEAM_HORDE);
+            DelCreature(uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_HORDE));
             break;
         case GrandMarshalTremblade:
-            DelCreature(SLGGenericMoPLargeAoI + TEAM_ALLIANCE);
+            DelCreature(uint32(SLGGenericMoPLargeAoI) + uint32(TEAM_ALLIANCE));
             break;
         default:
             break;
@@ -1911,7 +1916,7 @@ void OutdoorPvPAshran::InitializeControlPoints()
 void OutdoorPvPAshran::InitializeEvents()
 {
     uint32 l_Timer = 0;
-    uint32 l_TimerInterval = AshranEventTimer * MINUTE * IN_MILLISECONDS / MaxEvents;
+    uint32 l_TimerInterval = uint32(AshranEventTimer) * uint32(MINUTE) * uint32(IN_MILLISECONDS) / MaxEvents;
     for (uint8 l_Index = 0; l_Index < MaxEvents; ++l_Index)
     {
         if (l_Index != EventKorlokTheOgreKing && l_Index != EventStadiumRacing)

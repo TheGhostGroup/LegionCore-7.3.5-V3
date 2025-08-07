@@ -4667,7 +4667,6 @@ class spell_gen_artificial_stamina : public SpellScriptLoader
 static uint32 const _effects[] = 
 {
     ATTACK_POWER_FOR_ATTACKER,
-    NULL,
     MOD_DAMAGE_DONE_OVERRIDE,
     MOD_POWER_REGEN_OVERRIDE,
     STRENGTH_MULTIPLICATIVE,
