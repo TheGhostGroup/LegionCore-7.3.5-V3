@@ -153,7 +153,7 @@ struct npc_atheris_voguesong : ScriptedAI
 
         if (action == ACTION_2)
         {
-            me->AddDelayedEvent(1000, [=]() -> void
+            me->AddDelayedEvent(1000, [this]() -> void
             {
                 if (auto target = ObjectAccessor::GetPlayer(*me, ThirdPlace))
                 {
@@ -247,7 +247,7 @@ struct npc_atheris_voguesong : ScriptedAI
                     target->RemoveAura(SPELL_VOTE);
                     target->RemoveAura(SPELL_MORPH);
                     target->CastSpell(target, 241865, false);
-                    me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                    me->AddDelayedEvent(2000, [this]() -> void { Talk(SAY_HELLO_RIGHT); });
                     target->AddDelayedEvent(500, [target]() -> void
                     {
                         if (target->HasAura(261939))
@@ -440,7 +440,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, FifthPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -507,7 +511,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, ThirdPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -574,7 +582,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, ThirdPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -641,7 +653,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        {   
+                            if (auto target = ObjectAccessor::GetPlayer(*me, FirstPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -708,7 +724,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, SecondPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -775,7 +795,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        {   
+                            if (auto target = ObjectAccessor::GetPlayer(*me, FourthPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -842,7 +866,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, ThirdPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -909,7 +937,11 @@ struct npc_atheris_voguesong : ScriptedAI
                         target->RemoveAura(SPELL_MORPH);
                         target->RemoveAura(SPELL_VOTE);
                         target->CastSpell(target, 241865, false);
-                        me->AddDelayedEvent(2000, [=]() -> void { Talk(SAY_HELLO_RIGHT, target->GetGUID()); });
+                        me->AddDelayedEvent(2000, [this]() -> void 
+                        { 
+                            if (auto target = ObjectAccessor::GetPlayer(*me, FirstPlayer))
+                            Talk(SAY_HELLO_RIGHT, target->GetGUID()); 
+                        });
                         target->AddDelayedEvent(500, [target]() -> void
                         {
                             if (target->HasAura(261939))
@@ -1392,9 +1424,10 @@ public:
 
                 instance->ApplyOnEveryPlayer([&](Player* player)
                 {
-                    player->AddDelayedEvent(500, [=]() -> void
+                    player->AddDelayedEvent(500, [this]() -> void
                     {
-                        player->GetAchievementMgr()->StartTimedAchievement(static_cast<CriteriaTimedTypes>(CRITERIA_TIMED_TYPE_EVENT2), 57838);
+                        
+                        //player->GetAchievementMgr()->StartTimedAchievement(static_cast<CriteriaTimedTypes>(CRITERIA_TIMED_TYPE_EVENT2), 57838);
 
                         if (auto scenario = sScenarioMgr->GetScenario(instance->GetInstanceId()))
                             scenario->GetAchievementMgr().StartTimedAchievement(static_cast<CriteriaTimedTypes>(CRITERIA_TIMED_TYPE_EVENT2), 57838);

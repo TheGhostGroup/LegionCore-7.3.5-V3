@@ -507,7 +507,7 @@ void MySQLConnection::PrepareStatement(uint32 index, std::string_view sql, Conne
     MYSQL_STMT* stmt = mysql_stmt_init(m_Mysql);
     if (!stmt)
     {
-        TC_LOG_ERROR("sql.sql", "In mysql_stmt_init() id: %u, sql: \"%s\"", index, sql);
+        TC_LOG_ERROR("sql.sql", "In mysql_stmt_init() id: %u, sql: \"%s\"", index, std::string(sql).c_str());
         TC_LOG_ERROR("sql.sql", "%s", mysql_error(m_Mysql));
         m_prepareError = true;
     }
@@ -515,7 +515,7 @@ void MySQLConnection::PrepareStatement(uint32 index, std::string_view sql, Conne
     {
         if (mysql_stmt_prepare(stmt, sql.data(), static_cast<unsigned long>(sql.size())))
         {
-            TC_LOG_ERROR("sql.sql", "In mysql_stmt_prepare() id: %u, sql: \"%s\"", index, sql);
+            TC_LOG_ERROR("sql.sql", "In mysql_stmt_prepare() id: %u, sql: \"%s\"", index, std::string(sql).c_str());
             TC_LOG_ERROR("sql.sql", "%s", mysql_stmt_error(stmt));
             mysql_stmt_close(stmt);
             m_prepareError = true;

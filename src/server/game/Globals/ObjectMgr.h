@@ -924,7 +924,7 @@ class TC_GAME_API ObjectMgr
         
         std::vector<ScenarioSpellData> const* GetScenarioSpells(int32 ScenarioId) const
         {
-            if (_scenarioDataSpellStep.size() <= ScenarioId)
+            if (_scenarioDataSpellStep.size() <= static_cast<size_t>(ScenarioId))
                 return nullptr;
             return &_scenarioDataSpellStep[ScenarioId];
         }
