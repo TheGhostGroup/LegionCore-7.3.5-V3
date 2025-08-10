@@ -133,7 +133,7 @@ public:
 
             onInitEnterState = true;
 
-            AddDelayedEvent(100, [=] () -> void
+            AddDelayedEvent(100, [this] () -> void
             {
                 DoEventCreatures();
             });

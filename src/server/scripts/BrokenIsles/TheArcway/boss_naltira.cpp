@@ -380,7 +380,7 @@ public:
             if (Creature* beamTarget = summoner->SummonCreature(68553, me->GetPosition()))
                 beamTarget->CastSpell(me, SPELL_WEB_BEAM_TRASH, true);
 
-            AddDelayedEvent(500, [=] () -> void
+            AddDelayedEvent(500, [this] () -> void
             {
                 if (me)
                     me->GetMotionMaster()->MoveTakeoff(1, me->GetPositionX(), me->GetPositionY(), 574.2f);
