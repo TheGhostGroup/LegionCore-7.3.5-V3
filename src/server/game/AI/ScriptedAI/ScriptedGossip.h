@@ -1,16 +1,28 @@
-/* Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+/*
+ * This file is part of the TrinityCore Project. See AUTHORS file for Copyright information
  *
- * Thanks to the original authors: ScriptDev2 <https://scriptdev2.svn.sourceforge.net/>
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 2 of the License, or (at your
+ * option) any later version.
  *
- * This program is free software licensed under GPL version 2
- * Please see the included DOCS/LICENSE.TXT for more information */
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
 
-#ifndef SC_GOSSIP_H
-#define SC_GOSSIP_H
+#ifndef TRINITY_SCRIPTEDGOSSIP_H
+#define TRINITY_SCRIPTEDGOSSIP_H
 
+#include "Define.h"
 #include "Player.h"
 #include "GossipDef.h"
 #include "QuestDef.h"
+#include <string>
 
 // Gossip Item Text
 #define GOSSIP_TEXT_BROWSE_GOODS        "I'd like to browse your goods."
@@ -70,6 +82,23 @@ enum eTradeskill
     GOSSIP_SENDER_SEC_STABLEMASTER      = 10
 };
 
+// Trinitycore
+uint32 TC_GAME_API GetGossipSenderFor(Player* player, uint32 menuId);
+uint32 TC_GAME_API GetGossipActionFor(Player* player, uint32 gossipListId);
+void TC_GAME_API InitGossipMenuFor(Player* player, uint32 menuId);
+void TC_GAME_API ClearGossipMenuFor(Player* player);
+// Using provided text, not from DB
+void TC_GAME_API AddGossipItemFor(Player* player, GossipOptionNpc optionNpc, std::string text, uint32 sender, uint32 action);
+// Using provided texts, not from DB
+void TC_GAME_API AddGossipItemFor(Player* player, GossipOptionNpc optionNpc, std::string text, uint32 sender, uint32 action, std::string popupText, uint32 popupMoney, bool coded);
+// Uses gossip item info from DB
+void TC_GAME_API AddGossipItemFor(Player* player, uint32 gossipMenuID, uint32 gossipMenuItemID, uint32 sender, uint32 action);
+void TC_GAME_API SendGossipMenuFor(Player* player, uint32 npcTextID, ObjectGuid const& guid);
+void TC_GAME_API SendGossipMenuFor(Player* player, uint32 npcTextID, Creature const* creature);
+void TC_GAME_API CloseGossipMenuFor(Player* player);
+
+
+// LC Old Functions Depreciated. To Be Removed In Future
 // Defined functions to use with player.
 
 // This function adds a menu item,
