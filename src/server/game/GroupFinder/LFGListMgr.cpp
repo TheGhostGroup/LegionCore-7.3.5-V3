@@ -445,7 +445,7 @@ float LFGListMgr::GetPlayerItemLevelForActivity(GroupFinderActivityEntry const* 
     if (player == nullptr)
         return 0.0f;
 
-    return player->GetFloatValue(PLAYER_FIELD_AVG_ITEM_LEVEL + (IsActivityPvP(activity) ? PlayerAvgItemLevelOffsets::PvPAvgItemLevel : PlayerAvgItemLevelOffsets::NonPvPAvgItemLevel));
+    return player->GetFloatValue(static_cast<uint32>(PLAYER_FIELD_AVG_ITEM_LEVEL) + static_cast<uint32>(IsActivityPvP(activity) ? PlayerAvgItemLevelOffsets::PvPAvgItemLevel: PlayerAvgItemLevelOffsets::NonPvPAvgItemLevel));
 }
 
 float LFGListMgr::GetLowestItemLevelInGroup(LFGListEntry* entry) const

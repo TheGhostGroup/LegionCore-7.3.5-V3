@@ -1478,7 +1478,7 @@ public:
         if (amount < 0.f || amount > 1000.f)
             return false;
 
-        target->SetFloatValue(PLAYER_FIELD_AVG_ITEM_LEVEL + PlayerAvgItemLevelOffsets::EquippedAvgItemLevel, amount);
+        target->SetFloatValue(static_cast<uint16>(PLAYER_FIELD_AVG_ITEM_LEVEL) + static_cast<uint16>(PlayerAvgItemLevelOffsets::EquippedAvgItemLevel), amount);
         if (target->HasPvpStatsScalingEnabled())
         {
             target->SendUpdateStat(USM_ALL);

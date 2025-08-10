@@ -395,7 +395,7 @@ struct npc_death_metal_knight : public ScriptedAI
             Talk(SAY_DEATH_METAL_KNIGHT_INTRO_1);
             me->SetReactState(REACT_PASSIVE);
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_NOT_ATTACKABLE_1);
-            me->AddDelayedEvent(15000, [=]() -> void
+            me->AddDelayedEvent(15000, [this]() -> void
             {
                 me->SetWalk(true);
                 me->GetMotionMaster()->MovePoint(1, -4179.04f, 6026.6616f, 6.154604f);
@@ -527,7 +527,7 @@ struct npc_devlynn_styx : public ScriptedAI
                 DoCast(SPELL_STAGE_DIVE);
                 events.RescheduleEvent(EVENT_WHOOOOOOAH, 13000);
                 Talk(SAY_DEVLYNN_STYX_SCREAM);
-                me->AddDelayedEvent(1000, [=]() -> void { DoCast(SPELL_IN_THE_CROWD); });
+                me->AddDelayedEvent(1000, [this]() -> void { DoCast(SPELL_IN_THE_CROWD); });
                 break;
             }
             case EVENT_WHOOOOOOAH:

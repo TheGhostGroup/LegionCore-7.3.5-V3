@@ -86,7 +86,7 @@ public:
                 me->SetVisible(false);
                 intro = true;
                 kingDiedCount = 0;
-                AddDelayedEvent(500, [=] () -> void { SummonOdynKings(); });
+                AddDelayedEvent(500, [this] () -> void { SummonOdynKings(); });
             }
         }
 
@@ -111,7 +111,7 @@ public:
 
             if (!intro)
             {
-                AddDelayedEvent(10000, [=] () -> void
+                AddDelayedEvent(10000, [this] () -> void
                 {
                     me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_IMMUNE_TO_PC | UNIT_FLAG_NON_ATTACKABLE);
                     me->SetReactState(REACT_DEFENSIVE);

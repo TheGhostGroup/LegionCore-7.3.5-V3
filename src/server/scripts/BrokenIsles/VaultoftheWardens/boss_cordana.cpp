@@ -467,7 +467,7 @@ public:
             
             me->SetWalk(true);
             me->NearTeleportTo(paths[point].first);
-            me->AddDelayedEvent(100, [=]()->void
+            me->AddDelayedEvent(100, [this, point]()->void
             {
                 me->GetMotionMaster()->MovePoint(2, paths[point].second);
             });
@@ -697,14 +697,14 @@ public:
             me->SetReactState(REACT_PASSIVE);
             DoCast(213628);
 
-            me->AddDelayedEvent(500, [=]()-> void
+            me->AddDelayedEvent(500, [this]()-> void
             {
                 float x, y, z;
                 me->GetClosePoint(x, y, z, me->GetObjectSize() / 3, 55.0f);
                 me->GetMotionMaster()->MovePoint(1, x, y, z);
             });
             
-            me->AddDelayedEvent(600, [=]()-> void
+            me->AddDelayedEvent(600, [this]()-> void
             { 
                 DoCast(197415);
             });

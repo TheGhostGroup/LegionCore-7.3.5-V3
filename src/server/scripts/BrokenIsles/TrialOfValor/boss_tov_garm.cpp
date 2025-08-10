@@ -128,7 +128,7 @@ struct boss_garm : BossAI
         me->SetReactState(REACT_AGGRESSIVE);
         me->SetControlled(0, UNIT_STATE_ROOT);
         me->RemoveAllAuras();
-        me->AddDelayedEvent(2000, [=]() -> void
+        me->AddDelayedEvent(2000, [this]() -> void
         {
             for (auto x = 0; x < std::extent<decltype(passengerData)>::value; x++)
             {
@@ -210,7 +210,7 @@ struct boss_garm : BossAI
             countTarget = 0;
             ZoneTalk(SAY_RAID_CAST);
             me->RemoveAura(SpellHelyatosis);
-            me->AddDelayedEvent(1000, [=]() -> void { me->SetPower(POWER_ENERGY, 0); });
+            me->AddDelayedEvent(1000, [this]() -> void { me->SetPower(POWER_ENERGY, 0); });
             DoCast(RandSpellGuardiansBreath[urand(0, 2)]);
             me->SetFacingTo(me->getVictim());
         }
@@ -238,7 +238,7 @@ struct boss_garm : BossAI
         {
             frothingRage = true;
             countTarget++;
-            me->AddDelayedEvent(500, [=]() -> void
+            me->AddDelayedEvent(500, [this]() -> void
             {
                 if (countTarget == 0)
                     return;
@@ -269,7 +269,7 @@ struct boss_garm : BossAI
         }
         case ACTION_3:
         {
-            me->AddDelayedEvent(700, [=]() -> void
+            me->AddDelayedEvent(700, [this]() -> void
             {
                 if (!frothingRage)
                 {
@@ -301,7 +301,7 @@ struct boss_garm : BossAI
         case SpellGuardiansBreath_1:
         case SpellGuardiansBreath_2:
         case SpellGuardiansBreath_3:
-            me->AddDelayedEvent(500, [=]() -> void
+            me->AddDelayedEvent(500, [this]() -> void
             {
                 DoCast(me, SpellFieryPhlegmAOE, true);
                 DoCast(me, SpellDarkDischargeAOE, true);

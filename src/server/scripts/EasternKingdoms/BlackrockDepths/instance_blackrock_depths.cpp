@@ -210,7 +210,7 @@ public:
 
         void SetGuidData(uint32 type, ObjectGuid data)
         {
-            TC_LOG_DEBUG("scripts", "Instance Blackrock Depths: SetGuidData update (Type: %u Data " UI64FMTD ")", type, data.GetGUIDLow());
+            TC_LOG_DEBUG("scripts", "Instance Blackrock Depths: SetGuidData update (Type: %u Data: " UI64FMTD ")", type, static_cast<uint64>(data.GetGUIDLow()));
 
             switch (type)
             {

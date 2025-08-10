@@ -188,7 +188,7 @@ struct boss_high_botanist_telarn : BossAI
                 me->SetVisible(false);
             }
             if (instance)
-                instance->AddDelayedEvent(500, [=] () -> void { Init(); });
+                instance->AddDelayedEvent(500, [this] () -> void { Init(); });
         }
     }
 
@@ -320,7 +320,7 @@ struct boss_high_botanist_telarn : BossAI
                         }
                     }
                     RemoveAurasPlayers();
-                    AddDelayedEvent(5000, [=] () -> void { DoAction(ACTION_1); });
+                    AddDelayedEvent(5000, [this] () -> void { DoAction(ACTION_1); });
                 }
                 break;
             }
@@ -526,7 +526,7 @@ struct npc_nh_solarist_telarn : ScriptedAI
 
         DefaultEvents(0);
 
-        AddDelayedEvent(3000, [=] () -> void
+        AddDelayedEvent(3000, [this] () -> void
         {
             if (me)
                 me->SetReactState(REACT_AGGRESSIVE);
@@ -764,7 +764,7 @@ struct npc_nh_arcanist_telarn : ScriptedAI
         DoCast(me, SPELL_ARCANE_DISSOLVE_IN, true);
         //DoCast(me, SPELL_SHARE_HEALTH, true);
 
-        AddDelayedEvent(3000, [=] () -> void
+        AddDelayedEvent(3000, [this] () -> void
         {
             if (me)
                 me->SetReactState(REACT_AGGRESSIVE);
@@ -967,7 +967,7 @@ struct npc_nh_naturalist_telarn : ScriptedAI
 
         DefaultEvents(0);
 
-        AddDelayedEvent(3000, [=] () -> void
+        AddDelayedEvent(3000, [this] () -> void
         {
             if (me)
                 me->SetReactState(REACT_AGGRESSIVE);

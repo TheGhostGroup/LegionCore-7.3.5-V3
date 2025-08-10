@@ -157,7 +157,7 @@ struct boss_the_desolate_host_generic : BossAI
         {
             me->SetReactState(REACT_PASSIVE);
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE);
-            me->AddDelayedEvent(500, [=] () -> void { DoAction(ACTION_1); });
+            me->AddDelayedEvent(500, [this] () -> void { DoAction(ACTION_1); });
         }
     }
 
@@ -245,7 +245,7 @@ struct boss_the_desolate_host_generic : BossAI
                             boss->DespawnOrUnsummon(200);
                         }
                     }
-                    AddDelayedEvent(15000, [=] () -> void { DoAction(ACTION_1); });
+                    AddDelayedEvent(15000, [this] () -> void { DoAction(ACTION_1); });
                 }
                 break;
             }
@@ -1246,7 +1246,7 @@ struct npc_tos_soul_residue : ScriptedAI
                     if (summoner->IsCreature())
                         summoner->ToCreature()->AI()->SummonedCreatureDies(me, nullptr);
 
-                me->AddDelayedEvent(5000, [=] () -> void { me->DespawnOrUnsummon(); });
+                me->AddDelayedEvent(5000, [this] () -> void { me->DespawnOrUnsummon(); });
             }
         }
     }

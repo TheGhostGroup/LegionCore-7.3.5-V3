@@ -141,7 +141,7 @@ struct boss_sisters_of_the_moon : BossAI
         {
             me->SetReactState(REACT_PASSIVE);
             me->SetFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NON_ATTACKABLE | UNIT_FLAG_NOT_SELECTABLE | UNIT_FLAG_IMMUNE_TO_NPC | UNIT_FLAG_IMMUNE_TO_PC);
-            me->AddDelayedCombat(500, [=] () -> void { DoAction(ACTION_1); });
+            me->AddDelayedCombat(500, [this] () -> void { DoAction(ACTION_1); });
         }
     }
 
@@ -201,7 +201,7 @@ struct boss_sisters_of_the_moon : BossAI
                             sister->DespawnOrUnsummon(200);
                         }
                     }
-                    AddDelayedCombat(5000, [=] () -> void { DoAction(ACTION_1); });
+                    AddDelayedCombat(5000, [this] () -> void { DoAction(ACTION_1); });
                 }
                 break;
             }
@@ -385,7 +385,7 @@ struct npc_sister_kasparian : ScriptedAI
                 {
                     summoner->GetAI()->DoAction(ACTION_4); //Phase 2
                 }
-                me->AddDelayedCombat(2000, [=] () -> void
+                me->AddDelayedCombat(2000, [this] () -> void
                 {
                     me->CastSpell(me->GetHomePosition(), SPELL_SABERLEAP, true);
                 });
@@ -443,7 +443,7 @@ struct npc_sister_kasparian : ScriptedAI
             switch (id)
             {
                 case SPELL_SABERLEAP:
-                    me->AddDelayedCombat(500, [=] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
+                    me->AddDelayedCombat(500, [this] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
                     break;
             }
         }
@@ -634,7 +634,7 @@ struct npc_sister_lunaspyre : ScriptedAI
         switch (spell->Id)
         {
             case SPELL_INCORPOREAL_TELEPORT:
-                me->AddDelayedCombat(1000, [=] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
+                me->AddDelayedCombat(1000, [this] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
                 break;
         }
     }
@@ -787,7 +787,7 @@ struct npc_sister_yathae : ScriptedAI
                 {
                     summoner->GetAI()->DoAction(ACTION_5); //Phase 3
                 }
-                me->AddDelayedCombat(2000, [=] () -> void
+                me->AddDelayedCombat(2000, [this] () -> void
                 {
                     me->CastSpell(me->GetHomePosition(), SPELL_INCORPOREAL_TELEPORT, true);
                 });
@@ -858,7 +858,7 @@ struct npc_sister_yathae : ScriptedAI
         switch (spell->Id)
         {
             case SPELL_INCORPOREAL_TELEPORT:
-                me->AddDelayedCombat(1000, [=] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
+                me->AddDelayedCombat(1000, [this] () -> void { me->SetFacingTo(centrPos.GetAngle(me) - M_PI); });
                 break;
         }
     }

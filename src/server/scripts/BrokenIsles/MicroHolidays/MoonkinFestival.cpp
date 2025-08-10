@@ -8,7 +8,7 @@ struct npc_moonkin_hatchling : ScriptedAI
 
     void Reset() override
     {
-        me->AddDelayedEvent(1000, [=]() -> void
+        me->AddDelayedEvent(1000, [this]() -> void
         {
             if (me->FindNearestCreature(122241, 40.0f, true))
                 me->SetUInt32Value(UNIT_FIELD_EMOTE_STATE, EMOTE_STATE_DANCE);
@@ -204,7 +204,7 @@ struct npc_dramock: ScriptedAI
                 useEvent = true;
                 credit = 0;
 
-                me->AddDelayedEvent(500, [=]() -> void
+                me->AddDelayedEvent(500, [this]() -> void
                 {
                     playerGUIDs.clear();
                     playerList.clear();
@@ -307,7 +307,7 @@ struct npc_pewkew : ScriptedAI
                 useEvent = true;
                 credit = 0;
 
-                me->AddDelayedEvent(500, [=]() -> void
+                me->AddDelayedEvent(500, [this]() -> void
                 {
                     Talk(0);
                     events.RescheduleEvent(EVENT_1, 4000);
@@ -380,7 +380,7 @@ struct npc_clookle : ScriptedAI
         if (action == 0)
         {
             me->RemoveAura(244526);
-            me->AddDelayedEvent(3000, [=]() -> void {  DoCast(244526); });
+            me->AddDelayedEvent(3000, [this]() -> void {  DoCast(244526); });
 
             player->DestroyItemCount(150750, 1, true);
             player->CastSpell(player, 244157, false);

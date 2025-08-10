@@ -339,7 +339,7 @@ struct boss_krosus : BossAI
             if (!atRight || !atLeft)
                 return;
 
-            auto callback = [=](AreaTrigger* at) -> void
+            auto callback = [this](AreaTrigger* at) -> void
             {
                 for (auto playerGuid : *at->GetAffectedPlayers())
                     if (auto const& player = ObjectAccessor::GetPlayer(*me, playerGuid))

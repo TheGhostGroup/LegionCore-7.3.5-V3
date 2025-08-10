@@ -228,14 +228,14 @@ public:
                     case EVENT_1:
                         if (bouldersCounter < 3)
                         {
-                            events.RescheduleEvent(EVENT_1, 0.5 * IN_MILLISECONDS);
-                            events.RescheduleEvent(EVENT_7 + urand(0, 2), 0.5 * IN_MILLISECONDS);
+                            events.RescheduleEvent(EVENT_1, 0.5 * static_cast<double>(IN_MILLISECONDS));
+                            events.RescheduleEvent(EVENT_7 + urand(0, 2), 0.5 * static_cast<double>(IN_MILLISECONDS));
                             DoCast(SPELL_FIERY_BOULDER);
                             ++bouldersCounter;
                         } else
                         {
                             bouldersCounter = 0;
-                            events.RescheduleEvent(EVENT_4, 0.5 * IN_MILLISECONDS);
+                            events.RescheduleEvent(EVENT_4, 0.5 * static_cast<double>(IN_MILLISECONDS));
                         }
                         break;
                     case EVENT_7: // {0, NPC_FIERY_BOULDER_RIGHT, DATA_BOULDER_R}
@@ -245,9 +245,9 @@ public:
                             me->SummonCreature(NPC_FIERY_BOULDER_RIGHT, rightBoulder[0]);
                         } else if (instance->GetData(DATA_BOULDER_L) != DONE || instance->GetData(DATA_BOULDER_M) != DONE)
                             if (urand(0, 1))
-                                events.RescheduleEvent(EVENT_8, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_8, 0.5 * static_cast<double>(IN_MILLISECONDS));
                             else
-                                events.RescheduleEvent(EVENT_9, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_9, 0.5 * static_cast<double>(IN_MILLISECONDS));
                         break;
                     case EVENT_8: // {1, NPC_FIERY_BOULDER_LEFT, DATA_BOULDER_L}
                         if (instance->GetData(DATA_BOULDER_L) != DONE)
@@ -256,9 +256,9 @@ public:
                             me->SummonCreature(NPC_FIERY_BOULDER_LEFT, leftBoulder[0]);
                         } else if (instance->GetData(DATA_BOULDER_R) != DONE || instance->GetData(DATA_BOULDER_M) != DONE)
                             if (urand(0, 1))
-                                events.RescheduleEvent(EVENT_7, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_7, 0.5 * static_cast<double>(IN_MILLISECONDS));
                             else
-                                events.RescheduleEvent(EVENT_9, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_9, 0.5 * static_cast<double>(IN_MILLISECONDS));
                         break;
                     case EVENT_9: // {2, NPC_FIERY_BOULDER_MIDDLE, DATA_BOULDER_M}
                         if (instance->GetData(DATA_BOULDER_M) != DONE)
@@ -267,9 +267,9 @@ public:
                             me->SummonCreature(NPC_FIERY_BOULDER_MIDDLE, middleBoulder[0]);
                         } else if (instance->GetData(DATA_BOULDER_R) != DONE || instance->GetData(DATA_BOULDER_L) != DONE)
                             if (urand(0, 1))
-                                events.RescheduleEvent(EVENT_7, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_7, 0.5 * static_cast<double>(IN_MILLISECONDS));
                             else
-                                events.RescheduleEvent(EVENT_8, 0.5 * IN_MILLISECONDS);
+                                events.RescheduleEvent(EVENT_8, 0.5 * static_cast<double>(IN_MILLISECONDS));
                         break;
                     case EVENT_4:
                         if (burningSlagCounter < 6)
@@ -335,7 +335,7 @@ public:
             switch (action)
             {
                 case ACTION_1:
-                    events.RescheduleEvent(EVENT_1, 0.1 * IN_MILLISECONDS);
+                    events.RescheduleEvent(EVENT_1, 0.1 * static_cast<double>(IN_MILLISECONDS));
                     break;
                 default:
                     break;
@@ -371,7 +371,7 @@ public:
                 {
                     case EVENT_1:
                     {
-                        events.RescheduleEvent(EVENT_2, 1.5 * IN_MILLISECONDS);
+                        events.RescheduleEvent(EVENT_2, 1.5 * static_cast<double>(IN_MILLISECONDS));
                         me->CastSpell(me->GetPosition(), SPELL_FIERY_BOULDER_4, false);
 
                         Movement::MoveSplineInit init(*me);
@@ -453,7 +453,7 @@ public:
             switch (action)
             {
                 case ACTION_1:
-                    events.RescheduleEvent(EVENT_1, 0.1 * IN_MILLISECONDS);
+                    events.RescheduleEvent(EVENT_1, 0.1 * static_cast<double>(IN_MILLISECONDS));
                     break;
                 default:
                     break;
@@ -479,7 +479,7 @@ public:
                     me->DespawnOrUnsummon(1 * IN_MILLISECONDS);
                 }
 
-                checkTimer = 0.5 * IN_MILLISECONDS;
+                checkTimer = 0.5 * static_cast<double>(IN_MILLISECONDS);
             } else
                 checkTimer -= diff;
 
@@ -489,7 +489,7 @@ public:
                 {
                     case EVENT_1:
                     {
-                        events.RescheduleEvent(EVENT_2, 1.5 * IN_MILLISECONDS);
+                        events.RescheduleEvent(EVENT_2, 1.5 * static_cast<double>(IN_MILLISECONDS));
                         me->CastSpell(me->GetPosition(), SPELL_FIERY_BOULDER_4, false);
 
                         Movement::MoveSplineInit init(*me);
@@ -571,7 +571,7 @@ public:
             switch (action)
             {
                 case ACTION_1:
-                    events.RescheduleEvent(EVENT_1, 0.1 * IN_MILLISECONDS);
+                    events.RescheduleEvent(EVENT_1, 0.1 * static_cast<double>(IN_MILLISECONDS));
                     break;
                 default:
                     break;
@@ -597,7 +597,7 @@ public:
                     me->DespawnOrUnsummon(1 * IN_MILLISECONDS);
                 }
 
-                checkTimer = 0.5 * IN_MILLISECONDS;
+                checkTimer = 0.5 * static_cast<double>(IN_MILLISECONDS);
             } else
                 checkTimer -= diff;
 
@@ -607,7 +607,7 @@ public:
                 {
                     case EVENT_1:
                     {
-                        events.RescheduleEvent(EVENT_2, 1.5 * IN_MILLISECONDS);
+                        events.RescheduleEvent(EVENT_2, 1.5 * static_cast<double>(IN_MILLISECONDS));
                         me->CastSpell(me->GetPosition(), SPELL_FIERY_BOULDER_4, false);
 
                         Movement::MoveSplineInit init(*me);
@@ -696,7 +696,7 @@ public:
             switch (action)
             {
                 case ACTION_1:
-                    events.RescheduleEvent(EVENT_1, 0.1 * IN_MILLISECONDS);
+                    events.RescheduleEvent(EVENT_1, 0.1 * static_cast<double>(IN_MILLISECONDS));
                     break;
                 default:
                     break;

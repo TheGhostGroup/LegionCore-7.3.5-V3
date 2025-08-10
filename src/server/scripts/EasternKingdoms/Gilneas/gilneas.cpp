@@ -3058,7 +3058,8 @@ public:
 
             if (PlayerOn)
             {
-                player->SetClientControl(me, 0);
+                ASSERT(player);
+                player->SetClientControl(player, 0);
                 PlayerOn = false;
             }
         }

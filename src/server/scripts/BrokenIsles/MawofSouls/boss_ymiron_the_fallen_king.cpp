@@ -382,7 +382,7 @@ struct npc_ymiron_risen_warrior : public ScriptedAI
 
     void IsSummonedBy(Unit* summoner)
     {
-        AddDelayedEvent(100, [=] () -> void
+        AddDelayedEvent(100, [this] () -> void
         {
             if (me)
             {
@@ -391,7 +391,7 @@ struct npc_ymiron_risen_warrior : public ScriptedAI
             }
         });
 
-        AddDelayedEvent(3000, [=] () -> void
+        AddDelayedEvent(3000, [this] () -> void
         {
             if (me && me->IsAlive() && me->isInCombat())
             {

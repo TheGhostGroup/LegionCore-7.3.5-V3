@@ -2814,7 +2814,7 @@ public:
                     if (auto player = playerItr.getSource())
                         if (player->GetAreaId() == 7705)
                             if (me->GetDistance2d(player) <= 270.0f)
-                                if (player->GetQuestStatus(38766) == QUEST_STATE_COMPLETE)
+                                if (player->GetQuestStatus(38766) == static_cast<QuestStatus>(QUEST_STATE_COMPLETE))
                                     me->CastSpell(player, 191669);
 
                 timer = urand(5000, 10000);

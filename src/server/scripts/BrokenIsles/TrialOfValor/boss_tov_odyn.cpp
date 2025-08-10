@@ -494,7 +494,7 @@ struct boss_tov_odyn : BossAI
             break;
         }
         case SpellUnneringBlast:
-            me->AddDelayedEvent(1000, [=]() -> void
+            me->AddDelayedEvent(1000, [this]() -> void
             {
                 for (uint8 i = 0; i < 5; ++i)
                 {
@@ -504,8 +504,8 @@ struct boss_tov_odyn : BossAI
                 }
             });
             RemoveInCorrectAuras = 0;
-            me->AddDelayedEvent(8000, [=]() -> void { DoCast(SpellDrawPowerMythicCleanUp); });
-            me->AddDelayedEvent(4000, [=]() -> void { DoCast(SpellRunicBrandCleanUp); });
+            me->AddDelayedEvent(8000, [this]() -> void { DoCast(SpellDrawPowerMythicCleanUp); });
+            me->AddDelayedEvent(4000, [this]() -> void { DoCast(SpellRunicBrandCleanUp); });
             me->RemoveAllAreaObjects();
             DespawnAllSummons();
             break;
@@ -932,7 +932,7 @@ struct npc_tov_hymdall : ScriptedAI
                 me->setFaction(16);
                 instance->SendEncounterUnit(ENCOUNTER_FRAME_ENGAGE, me);
                 me->GetMotionMaster()->MoveJump(2410.51f, 508.8186f, 748.9946f, 20, 10, 2, 0.91346f);
-                me->AddDelayedEvent(2000, [=]() -> void
+                me->AddDelayedEvent(2000, [this]() -> void
                 {
                     if (auto player = me->FindNearestPlayer(300.0f, true))
                         AttackStart(player);
@@ -1175,7 +1175,7 @@ struct npc_tov_hyrja : ScriptedAI
                 me->RemoveAura(SpellHoverModeAnimState);
                 instance->SendEncounterUnit(ENCOUNTER_FRAME_ENGAGE, me);
                 me->GetMotionMaster()->MoveJump(2414.0634f, 552.47f, 748.9953f, 20, 10, 2, 4.82082f);
-                me->AddDelayedEvent(2000, [=]() -> void
+                me->AddDelayedEvent(2000, [this]() -> void
                 {
                     if (auto player = me->FindNearestPlayer(300.0f, true))
                         AttackStart(player);
@@ -1615,7 +1615,7 @@ class spell_odyn_branded_event : public AuraScript
             return;
 
         Unit* odyn = instance->instance->GetCreature(instance->GetGuidData(Data::Creatures::Odyn));
-        if (!odyn && !odyn->HasAura(SpellDrawPower))
+        if (!odyn || !odyn->HasAura(SpellDrawPower))
             return;
 
         if (GetTargetApplication()->GetRemoveMode() == AURA_REMOVE_BY_DEATH)

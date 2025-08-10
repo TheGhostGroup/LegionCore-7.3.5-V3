@@ -139,8 +139,8 @@ public:
                         {
                             float angle, x, y;
                             angle = pSpheres[0]->GetAngle(pSphereTarget);
-                            x = pSpheres[0]->GetPositionX() + DATA_SPHERE_DISTANCE * std::cos(angle);
-                            y = pSpheres[0]->GetPositionY() + DATA_SPHERE_DISTANCE * std::sin(angle);
+                            x = pSpheres[0]->GetPositionX() + static_cast<float>(DATA_SPHERE_DISTANCE) * std::cos(angle);
+                            y = pSpheres[0]->GetPositionY() + static_cast<float>(DATA_SPHERE_DISTANCE) * std::sin(angle);
                             pSpheres[0]->GetMotionMaster()->MovePoint(0, x, y, pSpheres[0]->GetPositionZ());
                         }
                         if (IsHeroic())

@@ -120,7 +120,7 @@ public:
 
                 if (sGameEventMgr->IsActiveEvent(78))
                 {
-                    instance->ApplyOnEveryPlayer([=](Player* player) -> void
+                    instance->ApplyOnEveryPlayer([this](Player* player) -> void
                     {
                         AllianceScore = sWorld->getWorldState(WS_SCORE_CALL_OF_THE_SCARAB_ALLINCE);
                         HordeScore = sWorld->getWorldState(WS_SCORE_CALL_OF_THE_SCARAB_HORDE);

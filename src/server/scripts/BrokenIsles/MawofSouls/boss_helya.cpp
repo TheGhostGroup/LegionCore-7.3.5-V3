@@ -354,7 +354,7 @@ struct boss_helya : public BossAI
             eventDelay = true;
             me->RemoveStandStateFlags(UNIT_STAND_STATE_SUBMERGED);
             me->SendPlaySpellVisualKit(VISUAL_KIT_1, 0);
-            AddDelayedEvent(5000, [=]() -> void { eventDelay = false; });
+            AddDelayedEvent(5000, [this]() -> void { eventDelay = false; });
             return;
         }
 

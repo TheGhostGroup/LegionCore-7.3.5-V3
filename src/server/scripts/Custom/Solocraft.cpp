@@ -439,7 +439,7 @@ public:
             int dunLevel = CalculateDungeonLevel(map, player);
             int numInGroup = GetNumInGroup(player);
             uint32 classBalance = GetClassBalance(player);
-            TC_LOG_DEBUG("solocraft", "solocraft player guid = %u, difficulty=%f, dunLevel=%d, numInGroup=%d, classBalance=%lu", player->GetGUID().GetCounter(), difficulty, dunLevel, numInGroup, classBalance);
+            TC_LOG_DEBUG("solocraft", "solocraft player guid = %lu, difficulty=%f, dunLevel=%d, numInGroup=%d, classBalance=%u", player->GetGUID().GetCounter(), difficulty, dunLevel, numInGroup, classBalance);
             ApplyBuffs(player, map, difficulty, dunLevel, numInGroup, classBalance);
         }
     }

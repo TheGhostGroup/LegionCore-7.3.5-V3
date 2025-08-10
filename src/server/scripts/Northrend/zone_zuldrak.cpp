@@ -659,7 +659,7 @@ public:
 
             if (!bSummoned && !HealthAbovePct(50))
             {
-                Talk(SAY_CALL_FOR_HELP);
+                Talk(static_cast<uint8>(SAY_CALL_FOR_HELP));
                 //DoCast(me->getVictim(), SPELL_SUMMON_WHISKER); petai is not working correctly???
 
                 if (Creature* pWhisker = me->SummonCreature(NPC_WHISKER, me->GetPositionX(), me->GetPositionY(), me->GetPositionZ(), 0, TEMPSUMMON_TIMED_DESPAWN_OUT_OF_COMBAT, 0))

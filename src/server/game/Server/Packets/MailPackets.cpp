@@ -101,7 +101,7 @@ WorldPackets::Mail::MailListEntry::MailListEntry(::Mail const* mail, Player* pla
     StationeryID = mail->stationery;
     SentMoney = mail->money;
     Flags = mail->checked;
-    DaysLeft = float(mail->expire_time - GameTime::GetGameTime()) / DAY;
+    DaysLeft = float(mail->expire_time - GameTime::GetGameTime()) / static_cast<float>(DAY);
     MailTemplateID = mail->mailTemplateId;
     Subject = mail->subject;
     Body = mail->body;

@@ -344,7 +344,7 @@ struct boss_helya_tov : BossAI
                 {
                     DoCast(SpellBilewaterBreath);
                     Talk(SAY_BILEWATER_BREATH);
-                    me->AddDelayedEvent(500, [=]() -> void { me->SetPower(POWER_ENERGY, 0); });
+                    me->AddDelayedEvent(500, [this]() -> void { me->SetPower(POWER_ENERGY, 0); });
                 }
             }
 
@@ -354,7 +354,7 @@ struct boss_helya_tov : BossAI
                 {
                     DoCast(SpellCorruptedBreath);
                     Talk(SAY_CORRUPTED_BREATH);
-                    me->AddDelayedEvent(500, [=]() -> void { me->SetPower(POWER_ENERGY, 0); });
+                    me->AddDelayedEvent(500, [this]() -> void { me->SetPower(POWER_ENERGY, 0); });
                 }
             }
         }
@@ -368,7 +368,7 @@ struct boss_helya_tov : BossAI
                     if (IsHeroicPlusRaid() && eventPhase == PHASE_2 && !FuryOfTheMaw)
                     {
                         FuryOfTheMaw = true;
-                        me->AddDelayedEvent(5000, [=]() -> void
+                        me->AddDelayedEvent(5000, [this]() -> void
                         {
                             FuryOfTheMawTrash = false;
                             DoCast(SpellFureOfTheMawLong);
@@ -382,7 +382,7 @@ struct boss_helya_tov : BossAI
                         {
                             DoCast(SpellFuryoftheMaw);
                             events.RescheduleEvent(EVENT_FURY_OF_THE_MAW_CLEAN_AT, 4000);
-                            me->AddDelayedEvent(500, [=]() -> void { me->SetPower(POWER_ALTERNATE, 0); });
+                            me->AddDelayedEvent(500, [this]() -> void { me->SetPower(POWER_ALTERNATE, 0); });
                         }
                     }
 
@@ -391,7 +391,7 @@ struct boss_helya_tov : BossAI
                         FuryOfTheMawTrash = false;
                         DoCast(SpellFuryoftheMaw);
                         events.RescheduleEvent(EVENT_FURY_OF_THE_MAW_CLEAN_AT, 4000);
-                        me->AddDelayedEvent(500, [=]() -> void { me->SetPower(POWER_ALTERNATE, 0); });
+                        me->AddDelayedEvent(500, [this]() -> void { me->SetPower(POWER_ALTERNATE, 0); });
                     }
                 }
             }
@@ -447,7 +447,7 @@ struct boss_helya_tov : BossAI
             me->RemoveAura(SpellHelyaBluePower);
             me->RemoveAura(SpellCorrosiveNova);
             me->SummonCreatureGroup(3);
-            me->AddDelayedEvent(5000, [=]() -> void
+            me->AddDelayedEvent(5000, [this]() -> void
             {
                 DoCast(SpellHelyaReuse);
                 Talk(SAY_PHASE_2);
@@ -470,7 +470,7 @@ struct boss_helya_tov : BossAI
             me->RemoveAura(SpellHelyaImmunityDamage);
             me->RemoveAura(SpellHelyaAltPowerRegen);
             me->RemoveAura(SpellTorrent);
-            me->AddDelayedCombat(5000, [=]() -> void
+            me->AddDelayedCombat(5000, [this]() -> void
             {
                 Talk(SAY_PHASE_3);
                 me->SetPower(POWER_ENERGY, 61);
@@ -478,7 +478,7 @@ struct boss_helya_tov : BossAI
                 me->SetReactState(REACT_AGGRESSIVE);
                 me->RemoveAura(SpellBuildingStorm);
                 me->RemoveAura(SpellCorrosiveNova);
-                me->AddDelayedEvent(1500, [=]() -> void
+                me->AddDelayedEvent(1500, [this]() -> void
                 {
                     DoCast(SpellHelyaAltPowerRegen);
                     checkrephase = false;
@@ -542,7 +542,7 @@ struct boss_helya_tov : BossAI
                 Position pos = player->GetPosition();
                 pos.m_positionX -= 6.0f;
                 pos.m_positionY -= 6.0f;
-                me->AddDelayedEvent(2000, [=]() -> void { me->SummonCreature(Data::Creatures::OrbOfCorruption, pos, playerGuid, TEMPSUMMON_TIMED_DESPAWN, 9000); });
+                me->AddDelayedEvent(2000, [this, pos]() -> void { me->SummonCreature(Data::Creatures::OrbOfCorruption, pos, playerGuid, TEMPSUMMON_TIMED_DESPAWN, 9000); });
             }
             break;
         }
@@ -570,7 +570,7 @@ struct boss_helya_tov : BossAI
                 Position pos = player->GetPosition();
                 pos.m_positionX -= 6.0f;
                 pos.m_positionY -= 6.0f;
-                me->AddDelayedEvent(2000, [=]() -> void { me->SummonCreature(Data::Creatures::OrbOfCorrosion, pos, playerGuid, TEMPSUMMON_TIMED_DESPAWN, 9000); });
+                me->AddDelayedEvent(2000, [this, pos]() -> void { me->SummonCreature(Data::Creatures::OrbOfCorrosion, pos, playerGuid, TEMPSUMMON_TIMED_DESPAWN, 9000); });
             }
             break;
         }
@@ -683,7 +683,7 @@ struct boss_helya_tov : BossAI
             if (instance->GetBossState(Data::BossIDs::GarmID) == DONE)
             {
                 Talk(SAY_INTRO_1);
-                me->AddDelayedEvent(13000, [=]() -> void { Talk(SAY_INTRO_2); });
+                me->AddDelayedEvent(13000, [this]() -> void { Talk(SAY_INTRO_2); });
             }
             break;
         default:
@@ -863,7 +863,7 @@ struct boss_helya_tov : BossAI
                 {
                     me->SummonCreature(Data::Creatures::KvaldirLongboat, 569.39f, 857.6201f, 0.00213f, 4.433769f, TEMPSUMMON_TIMED_DESPAWN, 5000);
                     me->SummonCreature(Data::Creatures::KvaldirLongboat, 638.672f, 817.6201f, 0.00213f, 3.943812f, TEMPSUMMON_TIMED_DESPAWN, 5000);
-                    me->AddDelayedCombat(4000, [=]() -> void
+                    me->AddDelayedCombat(4000, [this]() -> void
                     {
                         me->SummonCreature(Data::Creatures::Grimelord, 458.674f, 639.483f, 7.53757f, 4.433769f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000);
                         me->SummonCreature(Data::Creatures::NightWatchMariner, 516.007f, 614.179f, 5.5823f, 3.943812f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000);
@@ -876,7 +876,7 @@ struct boss_helya_tov : BossAI
                 }
                 else if (eventPhase == PHASE_3)
                 {
-                    me->AddDelayedCombat(4000, [=]() -> void
+                    me->AddDelayedCombat(4000, [this]() -> void
                     {
                         me->SummonCreature(Data::Creatures::NightWatchMariner, 516.007f, 614.179f, 5.5823f, 3.943812f, TEMPSUMMON_CORPSE_TIMED_DESPAWN, 5000);
                     });
@@ -1059,7 +1059,7 @@ class spell_taint_of_the_sea : public AuraScript
     void OnRemove(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
     {
         Unit* target = GetTarget();
-        if (!target && !target->isInCombat())
+        if (!target || !target->isInCombat())
             return;
 
         if (GetTargetApplication()->GetRemoveMode() == AURA_REMOVE_BY_ENEMY_SPELL)
@@ -1346,7 +1346,7 @@ struct npc_night_watch_mariner : ScriptedAI
             if (value == 100)
             {
                 DoCast(me, SpellLanternOfDarkness, false);
-                me->AddDelayedEvent(1000, [=]() -> void { me->SetPower(POWER_ENERGY, 0); });
+                me->AddDelayedEvent(1000, [this]() -> void { me->SetPower(POWER_ENERGY, 0); });
             }
         }
     }
@@ -1572,7 +1572,7 @@ struct npc_striking_tentacle : ScriptedAI
 
     void EnterCombat(Unit* /*who*/) override
     {
-        me->AddDelayedEvent(1000, [=]() -> void
+        me->AddDelayedEvent(1000, [this]() -> void
         {
             if (auto target = me->FindNearestPlayer(40.0f, true))
                 me->CastSpell(target, SpellTentacleStrike, false);

@@ -244,7 +244,7 @@ class instance_dragon_soul : public InstanceMapScript
                                 }
                             }
                         }
-                        TC_LOG_ERROR("scripts", "instance_dragon_soul: NPC_TWILIGHT_ASSAULTER_STALKER of unknown DB GUID was spawned: %u", pCreature->GetDBTableGUIDLow());
+                        TC_LOG_ERROR("scripts", "instance_dragon_soul: NPC_TWILIGHT_ASSAULTER_STALKER of unknown DB GUID was spawned: %llu", (unsigned long long)pCreature->GetDBTableGUIDLow());
                         break;
                     }
                     case NPC_EIENDORMI:

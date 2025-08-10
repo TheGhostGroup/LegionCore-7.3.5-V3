@@ -140,7 +140,7 @@ public:
                 me->SetUInt32Value(UNIT_FIELD_INTERACT_SPELL_ID, 0);
                 me->SetUInt32Value(UNIT_FIELD_STATE_ANIM_ID, ANIM_KNEEL_LOOP);
                 me->RemoveFlag(UNIT_FIELD_NPC_FLAGS, UNIT_NPC_FLAG_SPELLCLICK);
-                me->RemoveFlag(UNIT_FIELD_FLAGS_2, UNIT_FLAG2_FEIGN_DEATH | UNIT_FLAG_NON_ATTACKABLE);
+                me->RemoveFlag(UNIT_FIELD_FLAGS_2, static_cast<UnitFlags2>(UNIT_FLAG2_FEIGN_DEATH | static_cast<uint32>(UNIT_FLAG_NON_ATTACKABLE)));
                 me->SetFullHealth();
                 me->RemoveAura(SPELL_PERMANENT_FEIGN_DEATH);
                 me->SetOrientation(1.4885f);

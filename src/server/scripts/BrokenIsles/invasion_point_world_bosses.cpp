@@ -592,7 +592,7 @@ struct boss_matron_folnuna : public ScriptedAI
                     if (auto trigger = me->SummonCreature(124537, 4408.702f, 6490.092f, 40.38989f, 1.38464f, TEMPSUMMON_TIMED_DESPAWN, 15000))
                         DoCast(trigger, SPELL_SLIMBERING_GASP, false);
 
-                    me->AddDelayedCombat(500, [=]() -> void { me->SetPower(POWER_ENERGY, 0); });
+                    me->AddDelayedCombat(500, [this]() -> void { me->SetPower(POWER_ENERGY, 0); });
                 }
             }
         }

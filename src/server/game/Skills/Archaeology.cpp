@@ -121,21 +121,21 @@ bool Player::OnSurvey(uint32& entry, float& x, float& y, float& z, float &orient
     orientation = GetAngle(site.loot_x, site.loot_y);
     float dist_now = GetDistance2d(site.loot_x, site.loot_y);
 
-    if (dist_now >= ARCHAEOLOGY_DIG_SITE_FAR_DIST)
+    if (dist_now >= static_cast<float>(ARCHAEOLOGY_DIG_SITE_FAR_DIST))
     {
         entry = GO_FAR_SURVEYBOT;
         orientation += frand(float(- M_PI / 6), float(M_PI / 6));
         SendSurveyCast(site.count, MAX_DIGSITE_FINDS, rsite->second.branch_id, false);
         return false;
     }
-    if (dist_now >= ARCHAEOLOGY_DIG_SITE_MED_DIST)
+    if (dist_now >= static_cast<float>(ARCHAEOLOGY_DIG_SITE_MED_DIST))
     {
         entry = GO_MEDIUM_SURVEYBOT;
         orientation += frand(float(- M_PI / 18), float(M_PI / 18));
         SendSurveyCast(site.count, MAX_DIGSITE_FINDS, rsite->second.branch_id, false);
         return false;
     }
-    if (dist_now >= ARCHAEOLOGY_DIG_SITE_FIND_DIST)
+    if (dist_now >= static_cast<float>(ARCHAEOLOGY_DIG_SITE_FIND_DIST))
     {
         entry = GO_CLOSE_SURVEYBOT;
         SendSurveyCast(site.count, MAX_DIGSITE_FINDS, rsite->second.branch_id, false);

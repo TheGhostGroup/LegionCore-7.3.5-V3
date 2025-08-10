@@ -22,12 +22,12 @@
 
 enum BroadcastTexts
 {
-    TEXT_0, // 'Стражи! Хватит зевать, пора убивать.'
-    TEXT_1, // '...Мои рабы! Собственность Кровавого Молота!'
-    TEXT_2, // 'Идите сюда! Я закую вас в цепи.'
-    TEXT_3, // 'Хватайте этого!'
-    TEXT_4, // 'Рабы! Бейтесь или умрите!
-    TEXT_5, // 'У-у… мы вас всех убьем…'
+    TEXT_0, 
+    TEXT_1, 
+    TEXT_2, 
+    TEXT_3, 
+    TEXT_4, 
+    TEXT_5,
 };
 
 enum Spells
@@ -190,7 +190,7 @@ public:
                             me->AddAura(SPELL_EARTH_CRUSH_3, stalker);
                             me->CastSpell(stalker, SPELL_EARTH_CRUSH_2);
                             me->CastSpell(stalker, SPELL_EARTH_CRUSH);
-                            stalker->DespawnOrUnsummon(2.5 * IN_MILLISECONDS);
+                            stalker->DespawnOrUnsummon(2.5 * static_cast<double>(IN_MILLISECONDS));
                         }
                         break;
                     }

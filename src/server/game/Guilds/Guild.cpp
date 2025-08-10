@@ -1586,7 +1586,7 @@ void Guild::SendRoster(WorldSession* session /*= nullptr*/)
         memberData.AreaID = int32(onlineMember ? onlineMember->GetCurrentZoneID() : member->GetZoneId());
         memberData.PersonalAchievementPoints = int32(onlineMember ? onlineMember->GetAchievementPoints() : member->GetAchievementPoints());
         memberData.GuildReputation = int32(member->GetTotalReputation());
-        memberData.LastSave = float(onlineMember ? 0.0f : float(::GameTime::GetGameTime() - member->GetLogoutTime()) / DAY);
+        memberData.LastSave = float(onlineMember ? 0.0f : float(::GameTime::GetGameTime() - member->GetLogoutTime()) / float(DAY));
 
         for (uint8 i = 0; i < MAX_GUILD_PROFESSIONS; ++i)
         {
@@ -2220,7 +2220,7 @@ void Guild::HandleShiftRank(WorldSession* /*session*/, uint32 id, bool up)
     if (!rankinfo || !rankinfo2)
         return;
 
-    RankInfo tmp = NULL;
+    RankInfo tmp = RankInfo(0);
     tmp = *rankinfo2;
     rankinfo2->SetName(rankinfo->GetName());
     rankinfo2->SetRights(rankinfo->GetRights());

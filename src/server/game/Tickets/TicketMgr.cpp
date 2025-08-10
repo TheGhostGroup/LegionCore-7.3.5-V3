@@ -26,7 +26,7 @@
 #include "Chat.h"
 #include "World.h"
 
-inline float GetAge(uint64 t) { return float(GameTime::GetGameTime() - t) / DAY; }
+inline float GetAge(uint64 t) { return float(GameTime::GetGameTime() - t) / static_cast<float>(DAY);}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // GM ticket

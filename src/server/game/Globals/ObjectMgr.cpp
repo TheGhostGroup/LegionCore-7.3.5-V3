@@ -2197,7 +2197,8 @@ void ObjectMgr::LoadCreatures()
 
         if (data.phaseGroup && data.phaseId)
         {
-            TC_LOG_ERROR("sql.sql", "Table `creature` have creature (GUID: %u Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
+            TC_LOG_ERROR("sql.sql",
+    "Table `creature` have creature (GUID: %llu Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", static_cast<unsigned long long>(guid), data.id);
             data.phaseGroup = 0;
         }
 
@@ -2754,14 +2755,13 @@ void ObjectMgr::LoadGameobjects()
 
         if (data.phaseUseFlags & PHASE_USE_FLAGS_ALWAYS_VISIBLE && data.phaseUseFlags & PHASE_USE_FLAGS_INVERSE)
         {
-            TC_LOG_ERROR("sql.sql", "Table `gameobject` have gameobject (GUID: " UI64FMTD " Entry: %u) has both `phaseUseFlags` PHASE_USE_FLAGS_ALWAYS_VISIBLE and PHASE_USE_FLAGS_INVERSE,"
-                " removing PHASE_USE_FLAGS_INVERSE.", guid, data.id);
+            TC_LOG_ERROR("sql.sql", "Table `gameobject` have gameobject (GUID: " UI64FMTD " Entry: %u) has both `phaseUseFlags` PHASE_USE_FLAGS_ALWAYS_VISIBLE and PHASE_USE_FLAGS_INVERSE," " removing PHASE_USE_FLAGS_INVERSE.", guid, data.id);
             data.phaseUseFlags &= ~PHASE_USE_FLAGS_INVERSE;
         }
 
         if (data.phaseGroup && data.phaseId)
         {
-            TC_LOG_ERROR("sql.sql", "Table `gameobject` have gameobject (GUID: %u Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", guid, data.id);
+            TC_LOG_ERROR("sql.sql", "Table `gameobject` have gameobject (GUID: %llu Entry: %u) with both `phaseid` and `phasegroup` set, `phasegroup` set to 0", static_cast<unsigned long long>(guid), data.id);
             data.phaseGroup = 0;
         }
 

@@ -552,7 +552,7 @@ struct npc_unleashed_ballAI : public ScriptedAI
 
     void Initialize()
     {
-        RangeCheckTimer = 0.5*IN_MILLISECONDS;
+        RangeCheckTimer = 0.5 * static_cast<double>(IN_MILLISECONDS);
     }
 
     void MoveToNextPoint()
@@ -621,7 +621,7 @@ class npc_unleashed_dark : public CreatureScript
                         me->GetMotionMaster()->MoveIdle();
                         me->DespawnOrUnsummon(1*IN_MILLISECONDS);
                     }
-                    RangeCheckTimer = 0.5*IN_MILLISECONDS;
+                    RangeCheckTimer = 0.5 * static_cast<double>(IN_MILLISECONDS);
                 }
                 else
                     RangeCheckTimer -= diff;
@@ -653,7 +653,7 @@ class npc_unleashed_light : public CreatureScript
                         me->GetMotionMaster()->MoveIdle();
                         me->DespawnOrUnsummon(1*IN_MILLISECONDS);
                     }
-                    RangeCheckTimer = 0.5*IN_MILLISECONDS;
+                    RangeCheckTimer = 0.5 * static_cast<double>(IN_MILLISECONDS);
                 }
                 else
                     RangeCheckTimer -= diff;
