@@ -94,7 +94,7 @@ class boss_argaloth : public CreatureScript
 
         CreatureAI* GetAI(Creature* creature) const
         {
-            return GetInstanceAI<boss_argalothAI>(creature);
+            return GetBaradinHoldAI<boss_argalothAI>(creature);
         }
 };
 

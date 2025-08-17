@@ -2,8 +2,20 @@
 #define DEF_BARADINHOLD_H
 
 #define DataHeader "BH"
+#define BHScriptName "instance_baradin_hold"
 
 #define MAX_ENCOUNTER 3
+
+enum BHDataTypes
+{
+    // Encounters
+    BOSS_ARGALOTH   = 0,
+    BOSS_OCCUTHAR   = 1,
+    BOSS_ALIZABAL   = 2,
+
+    // Encounter Related
+    DATA_EXTINUISH_FEL_FLAMES
+};
 
 enum Creatures
 {
@@ -26,14 +38,13 @@ enum Data
     DATA_ALIZABAL   = 2,   
 };
 
-template<class AI>
-CreatureAI* GetInstanceAI(Creature* creature)
+
+template<class AI, class T>
+inline AI* GetBaradinHoldAI(T* obj)
 {
-    if (InstanceMap* instance = creature->GetMap()->ToInstanceMap())
-        if (instance->GetInstanceScript())
-            if (instance->GetScriptId() == sObjectMgr->GetScriptId("instance_baradin_hold"))
-                return new AI(creature);
-    return NULL;
+    return GetInstanceAI<AI>(obj, BHScriptName);
 }
+
+#define RegisterBaradinHoldCreatureAI(ai_name) RegisterCreatureAIWithFactory(ai_name, GetBaradinHoldAI)
 
 #endif

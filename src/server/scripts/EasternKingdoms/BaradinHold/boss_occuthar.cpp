@@ -40,7 +40,7 @@ class boss_occuthar : public CreatureScript
 
         CreatureAI* GetAI(Creature* pCreature) const
         {
-            return GetInstanceAI<boss_occutharAI>(pCreature);
+            return GetBaradinHoldAI<boss_occutharAI>(pCreature);
         }
 
         struct boss_occutharAI : public BossAI
@@ -132,7 +132,7 @@ class npc_occuthar_eyestalk : public CreatureScript
 
         CreatureAI* GetAI(Creature* pCreature) const
         {
-            return GetInstanceAI<npc_occuthar_eyestalkAI>(pCreature);
+            return GetBaradinHoldAI<npc_occuthar_eyestalkAI>(pCreature);
         }
 
         struct npc_occuthar_eyestalkAI : public Scripted_NoMovementAI
@@ -164,7 +164,7 @@ class npc_occuthar_eye_of_occuthar : public CreatureScript
 
         CreatureAI* GetAI(Creature* pCreature) const
         {
-            return GetInstanceAI<npc_occuthar_eye_of_occutharAI>(pCreature);
+            return GetBaradinHoldAI<npc_occuthar_eye_of_occutharAI>(pCreature);
         }
 
         struct npc_occuthar_eye_of_occutharAI : public Scripted_NoMovementAI
